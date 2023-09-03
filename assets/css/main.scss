@@ -4,7 +4,7 @@
 
 @charset "utf-8";
 
-$link-color: rgb(207, 4, 4);
+$link-color: rgb(255, 44, 44);
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
@@ -21,6 +21,6 @@ html {
     }
 
     @include breakpoint($x-large) {
-        font-size: 20px; // change to whatever
+        font-size: 19px; // change to whatever
     }
 }

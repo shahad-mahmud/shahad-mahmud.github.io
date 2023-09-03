@@ -18,11 +18,11 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 - Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"}, and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
 - Pursued Bachelor of Science in Computer Science and Engineering (CSE) from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}).
 
-## Recent Updates
+<!-- ## Recent Updates
 
 - *[July 2023]* Found a bug in Sentencepiece tokenizer from the Transformers repository. Created an issue and after discussion solved the bug with an accepted PR.
 - *[April 2023]* Merged 2 PRs at the Transformers repository.
-- *[October 2022]* Joined Giga Tech Limited as Machine Learning Engineer.
+- *[October 2022]* Joined Giga Tech Limited as Machine Learning Engineer. -->
 
 ## Work Experiences
 
@@ -65,3 +65,19 @@ While social media are broadly used to express opinions and emotions, emotion de
 **Secondly,** The model predictions have been explained using the model agnostic approach. Thirdly, emotions in the tweets related to COVID-19 have been classified and quantified along with an illustration of the emotion dynamics during the Corona Pandemic before and after the start of the vaccination.
 
 **Finally,** N-gram analysis has been used for the summarization of the contributing factors. In terms of emotion classification from ISEAR data, our approach comes out with a better F1 score of .72 compared to some other state-of-the-art works.
+
+## Open-source Contributions
+
+### Transformers
+
+Transformers from Hugging Face 🤗 is a popular library that I use regularly. I have been contributing to this repository in case of any update or bug. View my contributions at the Transformers repository [here](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud).
+
+### Unicode Converter
+
+This is a tool developed using python in order to converting Bangla ASCII writing system (like Bijoy) to unicode writing system (like Avro). This tool is distributed as a python package also which was downloaded more than **9k** times. Find the package at [PyPi](https://pypi.org/project/unicodeconverter/) or view the source code at [Github](https://github.com/shahad-mahmud/unicode_converter).
+
+## Educations
+
+### Bachelor of Science in Engineering
+
+In 2021, I completed Bachelor of Science in Computer Science and Engineer from Rajshahi University of Engineering and Technology (RUET). Besides my academic study, I participated in programming contests, developed some android and web-based applications, conducted my thesis using Deep Learning techniques in NLP, and solved programming problems in various online sites including Codeforces, LightOJ, SPOJ, etc.
