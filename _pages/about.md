@@ -70,11 +70,15 @@ While social media are broadly used to express opinions and emotions, emotion de
 
 ### Transformers
 
-Transformers from Hugging Face 🤗 is a popular library that I use regularly. I have been contributing to this repository in case of any update or bug. View my contributions at the Transformers repository [here](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud).
+Transformers from Hugging Face 🤗 is a popular library that I use regularly. I have been contributing to this repository in case of any update or bug. View my contributions at the Transformers repository [here](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}.
 
 ### Unicode Converter
 
-This is a tool developed using python in order to converting Bangla ASCII writing system (like Bijoy) to unicode writing system (like Avro). This tool is distributed as a python package also which was downloaded more than **9k** times. Find the package at [PyPi](https://pypi.org/project/unicodeconverter/) or view the source code at [Github](https://github.com/shahad-mahmud/unicode_converter).
+This is a tool developed using python in order to converting Bangla ASCII writing system (like Bijoy) to unicode writing system (like Avro). This tool is distributed as a python package also which was downloaded more than **9k** times. Find the package at [PyPi](https://pypi.org/project/unicodeconverter/){:target="_blank"} or view the source code at [Github](https://github.com/shahad-mahmud/unicode_converter){:target="_blank"}.
+
+### Incremental Learning for ASR
+
+Implemented the *Incremental Learning for End-to-End Automatic Speech Recognition* paper by Li Fu et al. It is a knowledge distillation based incremental learning approach that regularize the student model with two novel losses including RBKD and EBKD. Find the implementation at [Github](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
 
 ## Educations
 

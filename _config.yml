@@ -1,5 +1,5 @@
 theme                  : "minimal-mistakes-jekyll"
-minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "air" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
@@ -290,10 +290,10 @@ defaults:
   - scope:
       path: "_posts/en"
     values:
-      permalink: "/en/:title"
+      permalink: "/en/:categories/:title"
       language: en
   - scope:
       path: "_posts/bn"
     values:
-      permalink: "/bn/:title"
+      permalink: "/bn/:categories/:title"
       language: bn
