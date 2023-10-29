@@ -18,11 +18,12 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 - Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"}, and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
 - Pursued Bachelor of Science in Computer Science and Engineering (CSE) from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}).
 
-<!-- ## Recent Updates
+## Recent Updates
 
+- *[October 2023]* A Research paper on Bangla Lemmatization has been accepted at Finding of EMNLP 2023.
 - *[July 2023]* Found a bug in Sentencepiece tokenizer from the Transformers repository. Created an issue and after discussion solved the bug with an accepted PR.
 - *[April 2023]* Merged 2 PRs at the Transformers repository.
-- *[October 2022]* Joined Giga Tech Limited as Machine Learning Engineer. -->
+- *[October 2022]* Joined Giga Tech Limited as Machine Learning Engineer.
 
 ## Work Experiences
 
