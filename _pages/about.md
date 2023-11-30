@@ -20,7 +20,7 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 ## Recent Updates
 
-- *[October 2023]* A Research paper on Bangla Lemmatization has been accepted at Finding of EMNLP 2023.
+- *[October 2023]* A Research paper on Bangla Lemmatization has been accepted at Finding of **EMNLP 2023**.
 - *[July 2023]* Found a bug in Sentencepiece tokenizer from the Transformers repository. Created an issue and after discussion solved the bug with an accepted PR.
 - *[April 2023]* Merged 2 PRs at the Transformers repository.
 - *[October 2022]* Joined Giga Tech Limited as Machine Learning Engineer.
@@ -35,6 +35,7 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 My time at [Giga Tech Limited](https://gigatechltd.com/){:target="_blank"} has been a wonderful journey filled with learning and growth. Here, I've had the chance to dive into the world of NLP techniques, all with the goal of making NLP methods in the Bangla language even better. Along the way, I've become comfortable working with complex systems and handle critical tasks. It's been a great experience, full of teamwork, learning, and solving interesting challenges. At Giga Tech Limited, I -
 
+- Developed NER, POS, QA, and semantic similarity systems and successfully deployed them using ONNX, quantization, FastAPI, etc., improving overall system performance.
 - Accomplished the development and deployment of language model pre-training, data preparation, and fine-tuning pipelines (BERT, XLNet, GPT-2, T5) for the Bangla language.
 - Spearheaded research initiatives resulting in the creation of a highly accurate rule-based Lemmatizer specifically designed for Bangla, achieving a 90.17% accuracy rate.
 - Developed a comprehensive Bangla text processing toolkit, including normalization techniques that reduced data ambiguity by approximately 32% and streamlined text cleaning functionalities.
@@ -55,9 +56,20 @@ During my time at [REVE Systems](https://revesoft.com/){:target="_blank"}, I mai
 
 ## Publications
 
+### BanLemma: A Word Formation Dependent Rule and Dictionary Based Bangla Lemmatizer
+
+Sadia Afrin, **Md Shahad Mahmud Chowdhury**, Md Ekramul Islam, Faisal Ahamed Khan, Labib Imam Chowdhury, M. D. Motahar Mahtab, Nazifa Nuha Chowdhury, et al. In *The 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)*, 2023.
+
+The paper proposes BanLemma, a new rule-based lemmatizer specifically designed for the Bangla language with the following key aspects:
+
+- It uses linguistically derived rules for lemmatization based on extensive analysis of a large 90.65 million sentence Bangla text corpus. The rules depend on the part-of-speech (PoS) class and interpret the process of how inflected words are formed from base words.
+- It utilizes sequences of suffix markers instead of full suffixes, analyzing how markers combine to form suffixes according to morpho-syntactic behavior. Separate marker sequences are defined for nouns, pronouns, verbs, adjectives etc.
+- A dictionary is used alongside the rules to map inflected forms to lemmas. The dictionary has 71.5k entries organized by PoS.
+- Evaluation shows 96.36% accuracy on a human-annotated test set. BanLemma also outperforms prior Bangla lemmatization methods by 1-11% in cross-dataset testing.
+
 ### BERT-Based Emotion Classification Approach with Analysis of COVID-19 Pandemic Tweets
 
-Md. Shahad Mahmud Chowhdury and Biprodip Pal; *Applied Informatics for Industry 4.0 by Taylor & Francis; February, 2023*
+**Md. Shahad Mahmud Chowhdury** and Biprodip Pal; *Applied Informatics for Industry 4.0 by Taylor & Francis; February, 2023*
 
 While social media are broadly used to express opinions and emotions, emotion detection and classification from text is a challenging problem due to the lack of facial or voice expressions. This paper proposes a machine-learning model that, unlike manual feature extraction techniques, leverages the neural attention approach to detect emotions through meaningful feature extraction.
 
