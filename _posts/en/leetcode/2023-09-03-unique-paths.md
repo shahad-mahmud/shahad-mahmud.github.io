@@ -4,7 +4,7 @@ categories: problem-solving leetcode
 tags: dp recursion
 ---
 
-This is a dynamic programming related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/unique-paths/).
+This is a dynamic programming related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/unique-paths/){:target="_blank"}.
 
 ## The problem
 
