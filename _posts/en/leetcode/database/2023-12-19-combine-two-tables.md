@@ -1,7 +1,7 @@
 ---
 title: "175 - Combine Two Tables"
 categories: problem-solving leetcode database
-tags: sql left-join
+tags: sql join left-join
 ---
 
 ## The problem
