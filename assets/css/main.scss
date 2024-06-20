@@ -1,25 +1,10 @@
+---
+search: false
+---
+
 @charset "utf-8";
 
 $link-color: rgb(255, 44, 44);
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
-
-$sans-serif: "Open Sans", -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",
-  "Helvetica Neue", "Lucida Grande", Arial, sans-serif !default;
-
-html {
-  font-size: 12px; // change to whatever
-
-  @include breakpoint($medium) {
-    font-size: 14px; // change to whatever
-  }
-
-  @include breakpoint($large) {
-    font-size: 16px; // change to whatever
-  }
-
-  @include breakpoint($x-large) {
-    font-size: 19px; // change to whatever
-  }
-}
