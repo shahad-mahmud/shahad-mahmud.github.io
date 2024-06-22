@@ -14,9 +14,17 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 ## At a glance
 
-- About 3.5 years of research and work experience in NLP.
+- More than 4 years of research and work experience in NLP.
 - Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"}, and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
 - Pursued Bachelor of Science in Computer Science and Engineering (CSE) from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}).
+
+## Recent Blog Posts
+
+<div class="entries-list">
+   {% for post in site.posts limit:3 %}
+    {% include archive-single.html %}
+   {% endfor %}
+</div>
 
 ## Recent Updates
 
