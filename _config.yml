@@ -7,7 +7,7 @@ title                    : "Shahad Mahmud"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Shahad Mahmud"
-description              : "Welcome to Shahad's space!"
+description              : "Personal website of Shahad Mahmud - ML Engineer specializing in Natural Language Processing (NLP). Sharing insights about machine learning, programming, and technology."
 url                      : "https://shahadmahmud.com"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : shahad-mahmud/shahad-mahmud.github.io
@@ -66,11 +66,11 @@ google:
   instant_search         : # false (default), true
 
 # SEO Related
-google_site_verification :
-bing_site_verification   :
-naver_site_verification  :
-yandex_site_verification :
-baidu_site_verification  :
+google_site_verification : # Add your Google site verification code
+bing_site_verification   : # Add your Bing site verification code
+naver_site_verification  : # Add your Naver site verification code
+yandex_site_verification : # Add your Yandex site verification code
+baidu_site_verification  : # Add your Baidu site verification code
 
 # Social Sharing
 twitter:
@@ -302,3 +302,9 @@ defaults:
     values:
       permalink: "/bn/:categories/:title"
       language: bn
+
+# Sitemap
+sitemap:
+  changefreq: weekly
+  priority: 0.5
+  filename: sitemap.xml

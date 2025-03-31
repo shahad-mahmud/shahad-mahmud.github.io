@@ -14,7 +14,7 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 ## At a glance
 
-- More than 4 years of research and work experience in NLP.
+- More than 5 years of research and work experience in NLP including LLMs and Agents.
 - Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"}, and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
 - Pursued Bachelor of Science in Computer Science and Engineering (CSE) from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}).
 
@@ -28,6 +28,7 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 ## Recent Updates
 
+- *[October 2024]* Joined [Delineate](https://delineate.pro/) (YC W25) as Sr. AI Engineer and Team Lead.
 - *[October 2023]* A Research paper on Bangla Lemmatization has been accepted at Finding of **EMNLP 2023**.
 - *[July 2023]* Found a bug in Sentencepiece tokenizer from the Transformers repository. Created an issue and after discussion solved the bug with an accepted PR.
 - *[April 2023]* Merged 2 PRs at the Transformers repository.
@@ -37,9 +38,15 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 > "Experience is the teacher of all things" - Julius Caesar
 
+### Delineate (YC W25)
+
+**Sr. AI Engineer & Team Lead** \| remote \| *October 2024 - Present*
+
+Currently working at Delineate as a Sr. AI Engineer and AI team lead. Here I work with LLMs, Agents, ML system design and implementations.
+
 ### Giga Tech Limited
 
-**Machine Learning Engineer** \| *October 2022 - Present*
+**Machine Learning Engineer** \| hybrid \| *October 2022 - Present*
 
 My time at [Giga Tech Limited](https://gigatechltd.com/){:target="_blank"} has been a wonderful journey filled with learning and growth. Here, I've had the chance to dive into the world of NLP techniques, all with the goal of making NLP methods in the Bangla language even better. Along the way, I've become comfortable working with complex systems and handle critical tasks. It's been a great experience, full of teamwork, learning, and solving interesting challenges. At Giga Tech Limited, I -
 
