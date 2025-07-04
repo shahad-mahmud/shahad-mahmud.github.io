@@ -81,6 +81,8 @@ Here are the two main approaches:
 
 2.  **Scaling Out (Horizontal Scaling):** This involves distributing the load across multiple, smaller machines. It's also known as a *shared-nothing architecture* because each machine ideally operates independently. Think of it as adding more checkout counters at a busy supermarket instead of just making one counter super fast. While more complex to set up, horizontal scaling offers much greater flexibility and cost-effectiveness in the long run.
 
+![Scaling Up vs Scaling Out](https://algqkhztprzjwbinjgeu.supabase.co/storage/v1/object/public/assets/blogs/system-design/horizontal-vs-vertical-scaling.png "Scaling Up vs Scaling Out")
+
 ### Elastic Systems: The Ultimate Flexibility
 
 An **elastic system** takes horizontal scaling a step further. It's a system that can automatically add or remove computing resources (like virtual servers) based on whether the load increases or decreases. This is super helpful when the load is unpredictable, like during a flash sale or a viral event. Cloud providers like AWS and Google Cloud make this much easier to achieve.
