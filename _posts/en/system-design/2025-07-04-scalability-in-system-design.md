@@ -81,7 +81,7 @@ Here are the two main approaches:
 
 2.  **Scaling Out (Horizontal Scaling):** This involves distributing the load across multiple, smaller machines. It's also known as a *shared-nothing architecture* because each machine ideally operates independently. Think of it as adding more checkout counters at a busy supermarket instead of just making one counter super fast. While more complex to set up, horizontal scaling offers much greater flexibility and cost-effectiveness in the long run.
 
-![Scaling Up vs Scaling Out](https://algqkhztprzjwbinjgeu.supabase.co/storage/v1/object/public/assets/blogs/system-design/horizontal-vs-vertical-scaling.png "Scaling Up vs Scaling Out")
+![Scaling Up vs Scaling Out](https://myhuvzumtdjhrczfdlxb.supabase.co/storage/v1/object/public/personal-site/assets/blogs/system-design/horizontal-vs-vertical-scaling.png "Scaling Up vs Scaling Out")
 
 ### Elastic Systems: The Ultimate Flexibility
 
