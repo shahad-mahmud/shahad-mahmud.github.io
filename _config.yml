@@ -7,7 +7,7 @@ title                    : "Shahad Mahmud"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Shahad Mahmud"
-description              : "Personal website of Shahad Mahmud - ML Engineer specializing in Natural Language Processing (NLP). Sharing insights about machine learning, programming, and technology."
+description              : "Personal website of Shahad Mahmud - Sr. AI Engineer & Team Lead at Delineate (YC W25), building LLM and agentic systems for pharmaceutical research. EMNLP 2023 & NAACL 2025 author."
 url                      : "https://shahadmahmud.com"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : shahad-mahmud/shahad-mahmud.github.io
@@ -102,7 +102,7 @@ analytics:
 author:
   name             : "Md. Shahad Mahmud Chowdhury" 
   avatar           : "assets/images/shahad_profile.jpg"
-  bio              : "ML Engineer at Giga Tech Limited focusing on Natural Language Processing (NLP)."
+  bio              : "Sr. AI Engineer & Team Lead at Delineate (YC W25). Building LLM & agentic systems for pharma research. EMNLP 2023 · NAACL 2025."
   location         : "Dhaka, Bangladesh"
   # email            : "shahad9381@gmail.com"
   links:
