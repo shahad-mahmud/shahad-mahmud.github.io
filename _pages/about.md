@@ -10,13 +10,15 @@ toc_sticky: true
 
 Hi! I am **Shahad Mahmud**.
 
-As a *Machine Learning Engineer* and *Researcher*, I am passionate about exploring the exciting world of Natural Language Processing (NLP), with a particular focus on the Bangla language. I am always eager to learn about the latest technologies and coding practices that can help me push the boundaries of what's possible in this field.
+I am a **Sr. AI Engineer & Team Lead** building production LLM and agentic systems for pharmaceutical research at [Delineate](https://delineate.pro/) (YC W25). I lead a 10+ person AI team shipping multi-agent pipelines, scientific document extraction services, and evaluation systems that have to be right — not just convincing. I am also an NLP researcher with publications at EMNLP 2023 and NAACL 2025.
 
 ## At a glance
 
-- More than 5 years of research and work experience in NLP including LLMs and Agents.
-- Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"}, and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
-- Pursued Bachelor of Science in Computer Science and Engineering (CSE) from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}).
+- **Sr. AI Engineer & Team Lead** at [Delineate](https://delineate.pro/){:target="_blank"} (YC W25) — leading a 10+ person AI team building production LLM and agentic systems for pharmaceutical research.
+- 5+ years of experience in NLP, ML, and AI engineering — from Bangla ASR and lemmatization to multi-agent LLM pipelines and scientific document extraction.
+- Published researcher: [EMNLP 2023](https://aclanthology.org/2023.findings-emnlp.241/){:target="_blank"} (BanLemma) and [NAACL 2025](https://aclanthology.org/2025.findings-naacl.388/){:target="_blank"} (BanNERD).
+- Open-source contributions at Hugging Face's [Transformers](https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud){:target="_blank"}, Bangla [unicode converter](https://pypi.org/project/unicodeconverter/){:target="_blank"} (9k+ PyPI downloads), and Incremental Learning for ASR paper [implementation](https://github.com/shahad-mahmud/incremental_learning_for_asr){:target="_blank"}.
+- B.Sc. in Computer Science and Engineering from Rajshahi University of Engineering and Technology ([RUET](https://www.ruet.ac.bd/){:target="_blank"}), 2021.
 
 ## Recent Blog Posts
 
@@ -28,6 +30,8 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 ## Recent Updates
 
+- *[2025]* A research paper on Bangla Named Entity Recognition (**BanNERD**) has been accepted at Findings of **NAACL 2025**.
+- *[2025]* Shipped multi-agent LangGraph chat service with RAG, code execution, and persistent memory at Delineate.
 - *[October 2024]* Joined [Delineate](https://delineate.pro/) (YC W25) as Sr. AI Engineer and Team Lead.
 - *[October 2023]* A Research paper on Bangla Lemmatization has been accepted at Finding of **EMNLP 2023**.
 - *[July 2023]* Found a bug in Sentencepiece tokenizer from the Transformers repository. Created an issue and after discussion solved the bug with an accepted PR.
@@ -42,11 +46,18 @@ As a *Machine Learning Engineer* and *Researcher*, I am passionate about explori
 
 **Sr. AI Engineer & Team Lead** \| remote \| *October 2024 - Present*
 
-Currently working at Delineate as a Sr. AI Engineer and AI team lead. Here I work with LLMs, Agents, ML system design and implementations.
+At [Delineate](https://delineate.pro/){:target="_blank"}, I lead a 10+ person AI team within a 23-person technical organization, setting technical direction across AI microservices and shipping production code. I work at the intersection of LLMs, multi-agent systems, and scientific document extraction for pharmaceutical research. At Delineate, I —
+
+- Architected and shipped a multi-agent LangGraph service combining Anthropic Claude, Google Gemini, and OpenAI with Qdrant RAG, Postgres checkpointing, Redis caching, SSE streaming, and Jupyter-kernel code execution.
+- Led a vLLM-based V2 redesign of the document-parsing pipeline running on Ray and Kubernetes, achieving a **45% reduction in end-to-end latency** and resolving production memory leaks and pod-scaling issues.
+- Built an evaluation harness with side-by-side ground-truth-vs-prediction comparison and LLM-as-judge scoring that gates all AI extraction releases.
+- Integrated GPU inference via Modal for chart-element detection with single and batch APIs.
+- Designed a cookiecutter microservice template adopted across the AI org, and introduced Sentry monitoring, pre-commit discipline, and production CI/CD workflows.
+- Led R&D in quantitative systems pharmacology (QSP) modeling for a top-5 global pharmaceutical client.
 
 ### Giga Tech Limited
 
-**Machine Learning Engineer** \| hybrid \| *October 2022 - Present*
+**Machine Learning Engineer** \| hybrid \| *October 2022 - October 2024*
 
 My time at [Giga Tech Limited](https://gigatechltd.com/){:target="_blank"} has been a wonderful journey filled with learning and growth. Here, I've had the chance to dive into the world of NLP techniques, all with the goal of making NLP methods in the Bangla language even better. Along the way, I've become comfortable working with complex systems and handle critical tasks. It's been a great experience, full of teamwork, learning, and solving interesting challenges. At Giga Tech Limited, I -
 
@@ -70,6 +81,12 @@ During my time at [REVE Systems](https://revesoft.com/){:target="_blank"}, I mai
 - Developed and exposed APIs for integrating the ML models with applications and gRPC server for streaming speech recognition.
 
 ## Publications
+
+### BanNERD: A Benchmark Dataset and Context-Driven Approach for Bangla Named Entity Recognition
+
+M. D. Motahar Mahtab, Faisal Ahamed Khan, Md Ekramul Islam, **Md Shahad Mahmud Chowdhury**, Labib Imam Chowdhury, Sadia Afrin, et al. In *Findings of the 2025 Annual Conference of the North American Chapter of the Association for Computational Linguistics (NAACL)*, 2025.
+
+This paper introduces BanNERD, a benchmark dataset and a context-driven approach for Bangla Named Entity Recognition (NER).
 
 ### BanLemma: A Word Formation Dependent Rule and Dictionary Based Bangla Lemmatizer
 
