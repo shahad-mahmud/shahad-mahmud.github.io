@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/assert-legacy-urls.mjs",
+    "build": "astro check && astro build && node scripts/assert-legacy-urls.mjs",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",

@@ -10,8 +10,10 @@ function resolves(url) {
   const candidates = [
     join(DIST, p),               // file with extension (feed.xml, robots.txt, .pdf)
     join(DIST, p, "index.html"), // directory route
-    join(DIST, `${p}.html`),     // file-format route
   ];
+  if (!url.endsWith("/")) {
+    candidates.push(join(DIST, `${p}.html`)); // file-format route
+  }
   return candidates.some(existsSync);
 }
 
