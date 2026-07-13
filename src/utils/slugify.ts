@@ -16,3 +16,18 @@ export const slugifyStr = (str: string): string => {
 };
 
 export const slugifyAll = (arr: string[]) => arr.map(str => slugifyStr(str));
+
+/**
+ * Jekyll-parity category slugify: lowercase, spaces/underscores → "-",
+ * collapse repeated hyphens, trim leading/trailing hyphens.
+ * Used to reproduce Jekyll's permalink template exactly (URL preservation).
+ */
+export function slugifyCategory(input: string): string {
+  return input
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[_\s]+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
