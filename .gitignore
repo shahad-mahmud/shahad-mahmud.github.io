@@ -39,3 +39,5 @@ test/*
 .gitattributes
 .travis.yml
 CHANGELOG.md
+# Superpowers SDD scratch
+.superpowers/
