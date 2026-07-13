@@ -41,3 +41,12 @@ test/*
 CHANGELOG.md
 # Superpowers SDD scratch
 .superpowers/
+
+# Astro build output
+dist/
+.astro/
+public/pagefind/
+
+# Astro env files
+.env
+.env.production
