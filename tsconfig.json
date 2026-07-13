@@ -4,6 +4,7 @@
   "exclude": [
     "dist",
     "public/pagefind",
+    "public/assets",
     "assets",
     "_includes",
     "_layouts",
