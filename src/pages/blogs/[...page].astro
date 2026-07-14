@@ -24,9 +24,16 @@ const { page } = Astro.props;
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
+
+const canonicalPath =
+  page.currentPage === 1 ? "/blogs" : `/blogs/${page.currentPage}/`;
+const canonicalURL = new URL(canonicalPath, Astro.site).href;
 ---
 
-<Layout title={`${t.pages.blogsTitle} | ${config.site.title}`}>
+<Layout
+  title={`${t.pages.blogsTitle} | ${config.site.title}`}
+  canonicalURL={canonicalURL}
+>
   <Header />
 
   <Breadcrumb />
