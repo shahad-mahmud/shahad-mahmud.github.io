@@ -3,6 +3,8 @@ import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { resolveDefaultOgImagePath } from "@/utils/resolveDefaultOgImagePath";
 import { getAssetPath } from "@/utils/withBase";
+import { buildPersonSchema } from "@/utils/structuredData";
+import JsonLd from "@/components/JsonLd.astro";
 import config from "@/config";
 import "@/styles/global.css";
 
@@ -24,6 +26,18 @@ const {
 
 const socialImageURL = new URL(ogImage, Astro.site ?? Astro.url);
 const rssHref = getAssetPath("feed.xml");
+
+// Site-wide structured data: identifies the site and its author across every page.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: site.title,
+  url: site.url,
+};
+const personSchema = {
+  "@context": "https://schema.org",
+  ...buildPersonSchema(config),
+};
 ---
 
 <!doctype html>
@@ -78,6 +92,10 @@ const rssHref = getAssetPath("feed.xml");
 
     <!-- Filled at runtime by theme.ts to match the current background colour -->
     <meta name="theme-color" content="" />
+
+    <!-- Structured data: site-wide WebSite + Person (author) -->
+    <JsonLd schema={websiteSchema} />
+    <JsonLd schema={personSchema} />
 
     <!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->
     <slot name="head" />

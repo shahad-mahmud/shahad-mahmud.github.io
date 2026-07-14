@@ -1,36 +1,90 @@
 ---
 import Layout from "./Layout.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { buildPersonSchema } from "@/utils/structuredData";
+import { slugifyCategory } from "@/utils/slugify";
 import config from "@/config";
+
+type Faq = { q: string; a: string };
 
 type Props = {
   title?: string;
+  /** Raw post title (no " | site.title" suffix), used for JSON-LD headline/breadcrumb. */
+  postTitle?: string;
   description?: string;
   ogImage?: string;
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
+  categories?: string[];
+  faq?: Faq[];
 };
 
 const { site } = config;
 
-const { title, description, ogImage, canonicalURL, pubDatetime, modDatetime } =
-  Astro.props;
+const {
+  title,
+  postTitle,
+  description,
+  ogImage,
+  canonicalURL,
+  pubDatetime,
+  modDatetime,
+  categories = [],
+  faq,
+} = Astro.props;
 
-const structuredData = {
+const headline = postTitle ?? title ?? site.title;
+const authorSchema = buildPersonSchema(config);
+
+const blogPostingSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  headline: title ?? site.title,
+  headline,
+  ...(description && { description }),
   image: ogImage,
   ...(pubDatetime && { datePublished: pubDatetime.toISOString() }),
   ...(modDatetime && { dateModified: modDatetime.toISOString() }),
-  author: [
-    {
-      "@type": "Person",
-      name: site.author,
-      ...(site.profile && { url: site.profile }),
-    },
-  ],
+  author: [authorSchema],
+  ...(canonicalURL && { mainEntityOfPage: canonicalURL, url: canonicalURL }),
 };
+
+// Home -> each category level (linking to its real /categories/<slug>/ page) -> this post.
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { name: "Home", item: site.url },
+    ...categories.map(category => ({
+      name: category,
+      item: `${site.url}/categories/${slugifyCategory(category)}/`,
+    })),
+    { name: headline, item: canonicalURL ?? site.url },
+  ].map((item, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    ...item,
+  })),
+};
+
+// No post currently carries `faq` frontmatter, so this stays conditional/unrendered
+// until one does. There is no `howto` field in the content schema, so HowTo is
+// intentionally not emitted here.
+const faqSchema =
+  faq && faq.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: a,
+          },
+        })),
+      }
+    : null;
 ---
 
 <Layout {title} {description} {ogImage} {canonicalURL}>
@@ -55,11 +109,9 @@ const structuredData = {
       )
     }
 
-    <script
-      type="application/ld+json"
-      is:inline
-      set:html={JSON.stringify(structuredData)}
-    />
+    <JsonLd schema={blogPostingSchema} />
+    <JsonLd schema={breadcrumbSchema} />
+    {faqSchema && <JsonLd schema={faqSchema} />}
   </Fragment>
 
   <slot />

@@ -51,6 +51,8 @@ const {
   modDatetime,
   timezone,
   tags,
+  categories,
+  faq,
   hideEditPost,
 } = post.data;
 
@@ -80,11 +82,14 @@ const resolvedCanonicalURL = canonicalURL
 
 <PostLayout
   title={`${title} | ${config.site.title}`}
+  postTitle={title}
   description={description}
   ogImage={ogImage}
   canonicalURL={resolvedCanonicalURL}
   pubDatetime={pubDatetime}
   modDatetime={modDatetime}
+  categories={categories}
+  faq={faq}
 >
   <Header />
 
