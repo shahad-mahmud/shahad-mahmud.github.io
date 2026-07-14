@@ -4,7 +4,7 @@ pubDatetime: 2024-01-01T00:00:00+06:00
 description: "A short Bengali-language stub introducing weight sharing in neural networks and its use in reducing parameter counts in large models."
 categories: ["ml"]
 tags: ["NLP", "CV"]
-language: "en"
+language: "bn"
 draft: true
 ---
 

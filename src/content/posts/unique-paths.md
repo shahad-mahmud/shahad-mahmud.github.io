@@ -8,7 +8,7 @@ language: "en"
 draft: false
 ---
 
-This is a dynamic programming related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/unique-paths/){:target="_blank"}.
+This is a dynamic programming related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/unique-paths/).
 
 ## The problem
 

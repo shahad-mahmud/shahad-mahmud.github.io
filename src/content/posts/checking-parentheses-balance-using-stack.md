@@ -100,4 +100,4 @@ bool isBalanced(string expression){
 }
 ```
 
-You can get the full implementation [here](https://github.com/shahad-mahmud/data_structures/blob/master/stacks/parentheses.cpp){:target="_blank"}. If you like a video version. Check [here](https://www.youtube.com/watch?v=fOvGG4j7mP0){:target="_blank"}. Thank you very much.
+You can get the full implementation [here](https://github.com/shahad-mahmud/data_structures/blob/master/stacks/parentheses.cpp). If you like a video version. Check [here](https://www.youtube.com/watch?v=fOvGG4j7mP0). Thank you very much.

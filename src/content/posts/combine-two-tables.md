@@ -10,7 +10,7 @@ draft: false
 
 ## The problem
 
-This is a database related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/combine-two-tables/){:target="_blank"}.
+This is a database related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/combine-two-tables/).
 
 ### Description
 

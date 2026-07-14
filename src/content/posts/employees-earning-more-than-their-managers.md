@@ -10,7 +10,7 @@ draft: false
 
 ## The problem
 
-This is a database related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/employees-earning-more-than-their-managers/){:target="_blank"}. I have used **self join** to solve this problem.
+This is a database related problem from Leetcode. You can find the problem [here](https://leetcode.com/problems/employees-earning-more-than-their-managers/). I have used **self join** to solve this problem.
 
 ### Description
 

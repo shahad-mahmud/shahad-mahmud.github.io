@@ -4,7 +4,7 @@ pubDatetime: 2024-01-01T00:00:00+06:00
 description: "A Bengali-language walkthrough of the Transformer architecture (encoders, decoders, self-attention), inspired by Jay Alammar's Illustrated Transformer."
 categories: ["ml", "llm"]
 tags: ["NLP", "transformers"]
-language: "en"
+language: "bn"
 draft: true
 ---
 
