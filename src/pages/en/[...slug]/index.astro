@@ -5,6 +5,8 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
 import Tag from "@/components/Tag.astro";
+import Tldr from "@/components/Tldr.astro";
+import Faq from "@/components/Faq.astro";
 import { postRouteSlug, buildPostUrl } from "@/utils/postUrl";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import { slugifyStr } from "@/utils/slugify";
@@ -52,6 +54,7 @@ const {
   timezone,
   tags,
   categories,
+  tldr,
   faq,
   hideEditPost,
 } = post.data;
@@ -120,6 +123,8 @@ const resolvedCanonicalURL = canonicalURL
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
 
+    <Tldr {tldr} />
+
     <article
       id="article"
       class:list={[
@@ -130,6 +135,8 @@ const resolvedCanonicalURL = canonicalURL
     >
       <Content />
     </article>
+
+    <Faq {faq} />
 
     <hr class="my-8 border-dashed" />
 

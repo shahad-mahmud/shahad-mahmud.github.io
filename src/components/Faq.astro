@@ -1,0 +1,50 @@
+---
+/**
+ * Visible FAQ section for a post, rendered near the bottom of the article.
+ *
+ * Reads the same `entry.data.faq` array (`{ q, a }[]`) that PostLayout.astro
+ * uses to emit the `FAQPage` JSON-LD, so the visible Q&A and the structured
+ * data never diverge. Renders nothing when `faq` is absent/empty.
+ *
+ * The `a` (answer) field may contain Markdown per the content schema, but is
+ * rendered here as plain text (whitespace preserved via `whitespace-pre-line`)
+ * rather than parsed to HTML — pulling in a Markdown-to-HTML pass for a plain
+ * frontmatter string would add a second render pipeline (async remark/rehype
+ * processor invocation per answer) for content that in practice is short,
+ * answer-engine-style prose. Plain text keeps this simple and safe; revisit
+ * if FAQ answers start needing real formatting (lists, links, code).
+ */
+type Faq = { q: string; a: string };
+
+type Props = {
+  faq?: Faq[];
+};
+
+const { faq } = Astro.props;
+const items = faq ?? [];
+---
+
+{
+  items.length > 0 && (
+    <section aria-labelledby="faq-heading" class="mt-10 mb-8">
+      <h2 id="faq-heading" class="text-foreground mb-4 text-xl font-bold">
+        Frequently Asked Questions
+      </h2>
+      <div class="flex flex-col gap-3">
+        {items.map(({ q, a }, index) => (
+          <details
+            class="border-border bg-muted/30 rounded-md border px-4 py-3 open:pb-4"
+            open={index === 0}
+          >
+            <summary class="text-foreground marker:text-accent cursor-pointer font-semibold">
+              {q}
+            </summary>
+            <p class="text-foreground mt-2 mb-0 leading-relaxed whitespace-pre-line">
+              {a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}
