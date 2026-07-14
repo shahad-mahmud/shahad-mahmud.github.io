@@ -6,8 +6,9 @@ const getRobotsTxt = (base: string) => `User-agent: *
 Allow: /
 
 Sitemap: ${base}/sitemap.xml
+
 # LLM/GEO
-# llms.txt: ${base}/llms.txt
+llms.txt: ${base}/llms.txt
 `;
 
 export const GET: APIRoute = () => {
