@@ -45,6 +45,12 @@ export default {
     tagsTitle: "Tags",
     tagsDesc: "All the tags used in posts.",
 
+    categoryTitle: "Category",
+    categoryDesc: "All the articles in the category",
+
+    categoriesTitle: "Categories",
+    categoriesDesc: "All the categories used in posts.",
+
     blogsTitle: "Blogs",
     blogsDesc: "All the articles I've posted.",
 

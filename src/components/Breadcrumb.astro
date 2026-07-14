@@ -27,14 +27,19 @@ const decodeSegment = (value: string) => {
 const navLabels: Record<string, string> = {
   blogs: t.nav.blogs,
   tags: t.nav.tags,
+  categories: t.pages.categoriesTitle,
   about: t.nav.about,
   archives: t.nav.archives,
   search: t.nav.search,
 };
 
 // if breadcrumb is Home > Tags > [tag] > [page] <etc>
+// (or Home > Categories > [category] > [page])
 // replace [tag] > [page] with localized [tag] (page number)
-if (breadcrumbList[0] === "tags" && !isNaN(Number(breadcrumbList[2]))) {
+if (
+  (breadcrumbList[0] === "tags" || breadcrumbList[0] === "categories") &&
+  !isNaN(Number(breadcrumbList[2]))
+) {
   breadcrumbList.splice(
     1,
     3,
