@@ -4,7 +4,7 @@ import { fontData, experimental_getFontFileURL } from "astro:assets";
 import satori from "satori";
 import sharp from "sharp";
 import { getFontPathByWeight } from "@/utils/getFontPathByWeight";
-import { getPostSlug } from "@/utils/getPostPaths";
+import { postRouteSlug } from "@/utils/postUrl";
 import config from "@/config";
 
 export async function getStaticPaths() {
@@ -13,11 +13,14 @@ export async function getStaticPaths() {
   }
 
   const posts = await getCollection("posts").then(p =>
-    p.filter(({ data }) => !data.draft && !data.ogImage)
+    p.filter(
+      ({ data }) =>
+        (data.language ?? "en") === "en" && !data.draft && !data.ogImage
+    )
   );
 
   return posts.map(post => ({
-    params: { slug: getPostSlug(post.id, post.filePath) },
+    params: { slug: postRouteSlug({ ...post.data, slug: post.id }) },
     props: post,
   }));
 }
