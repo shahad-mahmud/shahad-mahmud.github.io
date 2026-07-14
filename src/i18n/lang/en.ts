@@ -5,9 +5,6 @@ export default {
     home: "Home",
     blogs: "Blogs",
     tags: "Tags",
-    about: "About",
-    archives: "Archives",
-    search: "Search",
     resume: "Resume",
   },
   post: {
@@ -53,19 +50,12 @@ export default {
 
     blogsTitle: "Blogs",
     blogsDesc: "All the articles I've posted.",
-
-    archivesTitle: "Archives",
-    archivesDesc: "All the articles I've archived.",
-
-    searchTitle: "Search",
-    searchDesc: "Search any article ...",
   },
   a11y: {
     skipToContent: "Skip to content",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     toggleTheme: "Toggle theme",
-    searchPlaceholder: "Search posts...",
     noResults: "No results found",
     goToPreviousPage: "Go to previous page",
     goToNextPage: "Go to next page",

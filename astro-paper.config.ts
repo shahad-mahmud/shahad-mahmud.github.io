@@ -27,7 +27,6 @@ export default defineAstroPaperConfig({
       enabled: true,
       url: "https://github.com/satnaing/astro-paper/edit/main/",
     },
-    search: "pagefind",
   },
   socials: [
     { name: "github",   url: "https://github.com/shahad-mahmud" },

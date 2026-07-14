@@ -3,9 +3,6 @@ export interface UIStrings {
     home: string;
     blogs: string;
     tags: string;
-    about: string;
-    archives: string;
-    search: string;
     resume: string;
   };
   post: {
@@ -51,19 +48,12 @@ export interface UIStrings {
 
     blogsTitle: string;
     blogsDesc: string;
-
-    archivesTitle: string;
-    archivesDesc: string;
-
-    searchTitle: string;
-    searchDesc: string;
   };
   a11y: {
     skipToContent: string;
     openMenu: string;
     closeMenu: string;
     toggleTheme: string;
-    searchPlaceholder: string;
     noResults: string;
     goToPreviousPage: string;
     goToNextPage: string;

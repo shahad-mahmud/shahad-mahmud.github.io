@@ -13,16 +13,34 @@ import { getSortedPosts } from "@/utils/getSortedPosts";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-const { socials, posts: postsConfig } = config;
+const RECENT_POSTS_COUNT = 5;
+
+const { site, socials } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
 const t = useTranslations(locale);
 
-const posts = await getCollection("posts");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const posts = await getCollection(
+  "posts",
+  ({ data }) => !data.draft && (data.language ?? "en") === "en"
+);
+const recentPosts = getSortedPosts(posts).slice(0, RECENT_POSTS_COUNT);
 const homePath = getRelativeLocaleUrl(locale, "");
+
+const publications = [
+  {
+    title:
+      "BanLemma: A Word Formation Dependent Rule and Dictionary Based Bangla Lemmatizer",
+    venue: "Findings of EMNLP 2023",
+    url: "https://aclanthology.org/2023.findings-emnlp.241/",
+  },
+  {
+    title:
+      "BanNERD: A Benchmark Dataset and Context-Driven Approach for Bangla Named Entity Recognition",
+    venue: "Findings of NAACL 2025",
+    url: "https://aclanthology.org/2025.findings-naacl.388/",
+  },
+];
 ---
 
 <Layout>
@@ -35,7 +53,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
   >
     <section id="hero" class="border-border border-b pt-8 pb-6">
       <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Mingalaba
+        {site.author}
       </h1>
       <a
         target="_blank"
@@ -52,21 +70,25 @@ const homePath = getRelativeLocaleUrl(locale, "");
         <span class="sr-only">RSS Feed</span>
       </a>
 
-      <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
+      <p class="text-accent text-lg font-medium">
+        Sr. AI Engineer &amp; Team Lead @ Delineate (YC W25)
       </p>
-      <p class="mt-2">
-        Read the blog posts or check
+
+      <p class="mt-4 max-w-2xl">
+        I lead a 10+ person AI team building production LLM and agentic
+        systems for pharmaceutical research at
         <LinkButton
           class="hover:text-accent underline decoration-dashed underline-offset-4"
-          href="https://github.com/satnaing/astro-paper#readme"
+          href="https://delineate.pro/"
+          target="_blank"
         >
-          README
-        </LinkButton> for more info.
+          Delineate
+        </LinkButton> (YC W25) — shipping multi-agent pipelines, scientific
+        document extraction services, and evaluation systems that have to be
+        right, not just convincing. 5+ years of experience in NLP, ML, and AI
+        engineering, with publications at EMNLP 2023 and NAACL 2025.
       </p>
+
       {
         socials.length > 0 && (
           <div class="mt-4 flex max-sm:flex-col sm:items-center">
@@ -79,26 +101,36 @@ const homePath = getRelativeLocaleUrl(locale, "");
       }
     </section>
 
-    {
-      featuredPosts.length > 0 && (
-        <section
-          id="featured"
-          class:list={[
-            "pt-12 pb-6",
-            { "border-border border-b": recentPosts.length > 0 },
-          ]}
-        >
-          <h2 class="text-2xl font-semibold tracking-wide">
-            {t.home.featured}
-          </h2>
-          <ul>
-            {featuredPosts.map(data => (
-              <Card variant="h3" {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
+    <section
+      id="publications"
+      class:list={[
+        "pt-12 pb-6",
+        { "border-border border-b": recentPosts.length > 0 },
+      ]}
+    >
+      <h2 class="text-2xl font-semibold tracking-wide">Publications</h2>
+      <ul>
+        {
+          publications.map(pub => (
+            <li class="my-6">
+              <a
+                href={pub.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class:list={[
+                  "text-accent inline-block text-lg font-medium",
+                  "decoration-dashed underline-offset-4 hover:underline",
+                  "focus-visible:no-underline focus-visible:underline-offset-0",
+                ]}
+              >
+                {pub.title}
+              </a>
+              <p class="text-muted-foreground">{pub.venue}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
 
     {
       recentPosts.length > 0 && (
@@ -107,7 +139,7 @@ const homePath = getRelativeLocaleUrl(locale, "");
             {t.home.recentPosts}
           </h2>
           <ul>
-            {recentPosts.slice(0, postsConfig.perIndex).map(data => (
+            {recentPosts.map(data => (
               <Card variant="h3" {...data} />
             ))}
           </ul>
