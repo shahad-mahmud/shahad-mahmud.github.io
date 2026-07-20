@@ -100,6 +100,26 @@ const personSchema = {
     <!-- Extra head content injected by child layouts (e.g. JSON-LD, article meta) -->
     <slot name="head" />
 
+    <!-- Google Analytics -->
+    {
+      import.meta.env.PROD && (
+        <>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-1BJNQ5FQ4G"
+          ></script>
+          <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-1BJNQ5FQ4G");
+          </script>
+        </>
+      )
+    }
+
     {
       site.googleVerification && (
         <meta
