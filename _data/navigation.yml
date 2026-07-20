@@ -1,7 +1,0 @@
-main:
-  - title: "Blogs"
-    url: "/blogs"
-  - title: "Resume"
-    url: "/assets/documents/md_shahad_mahmud_chowdhury.pdf"
-  - title: "Home"
-    url: "/"

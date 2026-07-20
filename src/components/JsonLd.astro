@@ -1,0 +1,13 @@
+---
+/**
+ * Renders a single JSON-LD `<script>` block for the given schema.org object.
+ * Single responsibility: serialize `schema` — callers own the shape.
+ */
+type Props = {
+  schema: Record<string, unknown>;
+};
+
+const { schema } = Astro.props;
+---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />

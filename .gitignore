@@ -39,3 +39,13 @@ test/*
 .gitattributes
 .travis.yml
 CHANGELOG.md
+# Superpowers SDD scratch
+.superpowers/
+
+# Astro build output
+dist/
+.astro/
+
+# Astro env files
+.env
+.env.production

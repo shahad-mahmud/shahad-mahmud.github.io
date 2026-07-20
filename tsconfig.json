@@ -1,0 +1,22 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": [
+    "dist",
+    "public/assets",
+    "assets",
+    "_includes",
+    "_layouts",
+    "_pages",
+    "_posts",
+    "_drafts",
+    "_data",
+    "_sass"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/astro-paper.config": ["./astro-paper.config"]
+    }
+  }
+}

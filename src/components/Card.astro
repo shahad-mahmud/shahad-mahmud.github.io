@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { buildPostUrl } from "@/utils/postUrl";
+import { toTransitionName } from "@/utils/toTransitionName";
+import { slugifyCategory } from "@/utils/slugify";
+import Datetime from "./Datetime.astro";
+import TokenChip from "./TokenChip.astro";
+import config from "@/config";
+
+type Props = {
+  variant?: "h2" | "h3";
+} & CollectionEntry<"posts">;
+
+const { variant: Heading = "h2", id, data } = Astro.props;
+
+const { title, description, categories, ...props } = data;
+const category = categories?.[0];
+
+const locale = Astro.currentLocale ?? config.site.lang;
+---
+
+<li class="border-border/70 border-b py-6 first:pt-0 last:border-b-0">
+  <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+    {
+      category && (
+        <TokenChip
+          href={getRelativeLocaleUrl(locale, `categories/${slugifyCategory(category)}/`)}
+        >
+          {category}
+        </TokenChip>
+      )
+    }
+    <Datetime {...props} class="text-xs" />
+  </div>
+  <a
+    href={buildPostUrl({ ...data, slug: id })}
+    class:list={[
+      "group text-foreground mt-1.5 inline-block text-lg font-semibold",
+      "decoration-dashed underline-offset-4 hover:underline",
+      "focus-visible:no-underline focus-visible:underline-offset-0",
+    ]}
+  >
+    <Heading
+      transition:name={toTransitionName(title)}
+      class="group-hover:text-accent transition-colors"
+    >
+      {title}
+    </Heading>
+  </a>
+  <p class="text-muted-foreground mt-1 max-w-prose text-sm text-balance">
+    {description}
+  </p>
+</li>
