@@ -3,18 +3,40 @@
 @layer base {
   /* ===== Override default Tailwind Typography styles ===== */
   .app-prose {
-    @apply prose;
+    /*
+     * prose-lg bumps the base reading size to ~18px (and everything the
+     * plugin derives from it — spacing, list indents, nested code size)
+     * while its own max-width stays character-relative (~65ch), close to
+     * the ~66–72ch target regardless of size. Headings scale with it too,
+     * which reads as a deliberate, more editorial hierarchy.
+     */
+    @apply prose prose-lg;
 
+    /*
+     * Voice split (the concept): chrome speaks in mono, writing in serif.
+     * Headings are chrome — keep them mono even though the body switches
+     * to a serif reading face below.
+     */
     h1,
     h2,
     h3,
     h4,
     th {
-      @apply text-foreground mb-3;
+      @apply text-foreground font-app mb-3 tracking-tight;
     }
 
     h3 {
       @apply italic;
+    }
+
+    /*
+     * Human voice — long-form reading prose only. NOT headings, code, or
+     * tables (those stay mono chrome, see below).
+     */
+    p,
+    li,
+    blockquote {
+      @apply font-serif leading-[1.7];
     }
 
     p,
@@ -71,7 +93,8 @@
     }
 
     code {
-      @apply bg-muted/75 text-foreground rounded p-1 wrap-break-word before:content-none after:content-none;
+      /* Code stays mono chrome even when nested inside serif-scoped p/li. */
+      @apply bg-muted/75 text-foreground font-app rounded p-1 wrap-break-word before:content-none after:content-none;
     }
 
     .astro-code code {
@@ -79,7 +102,7 @@
     }
 
     blockquote {
-      @apply border-s-accent/80 wrap-break-word opacity-80;
+      @apply border-s-4 border-s-accent/80 wrap-break-word opacity-80;
     }
 
     details:not(.callout) {

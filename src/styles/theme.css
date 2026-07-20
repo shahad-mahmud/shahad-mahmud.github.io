@@ -7,28 +7,41 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+
+  /* Machine voice (chrome: wordmark, nav, headings, labels, code) — mono. */
   --font-app: var(--font-google-sans-code);
+  /* Human voice — post body prose only (see typography.css `.app-prose`). */
+  --font-serif: var(--font-newsreader);
+  /* Signature: hero Bangla name line only. */
+  --font-bengali: var(--font-noto-serif-bengali);
 }
+
+/*
+ * "Tokenized" palette — warm paper/ink with a single burnt-amber accent,
+ * kept in the lineage of the OG image accent (#ff6b01, src/utils/ogTemplate.ts)
+ * so the site and its social cards read as one brand. Contrast verified
+ * WCAG AA (accent-as-text passes ≥4.5:1 in both themes).
+ */
 
 /* Light theme values */
 :root,
 [data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
+  --background: #faf8f3;
+  --foreground: #1b1a17;
+  --accent: #c2440a;
   --accent-foreground: #ffffff;
-  --muted: #e6e6e6;
-  --muted-foreground: #6b7280;
-  --border: #ece9e9;
+  --muted: #ece7de;
+  --muted-foreground: #6a655c;
+  --border: #e4ded3;
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --accent-foreground: #ffffff;
-  --muted: #343f60;
-  --muted-foreground: #afb9ca;
-  --border: #ab4b08;
+  --background: #1a1b22;
+  --foreground: #eceae3;
+  --accent: #ff7a2e;
+  --accent-foreground: #1a1b22;
+  --muted: #2a2c38;
+  --muted-foreground: #a7a395;
+  --border: #33353f;
 }

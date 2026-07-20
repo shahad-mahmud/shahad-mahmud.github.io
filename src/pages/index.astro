@@ -9,7 +9,9 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
+import TokenChip from "@/components/TokenChip.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
+import { getAssetPath } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
@@ -31,16 +33,22 @@ const publications = [
   {
     title:
       "BanLemma: A Word Formation Dependent Rule and Dictionary Based Bangla Lemmatizer",
+    short: "BanLemma",
     venue: "Findings of EMNLP 2023",
     url: "https://aclanthology.org/2023.findings-emnlp.241/",
   },
   {
     title:
       "BanNERD: A Benchmark Dataset and Context-Driven Approach for Bangla Named Entity Recognition",
+    short: "BanNERD",
     venue: "Findings of NAACL 2025",
     url: "https://aclanthology.org/2025.findings-naacl.388/",
   },
 ];
+
+const resumeUrl = getAssetPath(
+  "assets/documents/md_shahad_mahmud_chowdhury.pdf"
+);
 ---
 
 <Layout>
@@ -51,34 +59,51 @@ const publications = [
     data-home-path={homePath}
     class="app-layout"
   >
-    <section id="hero" class="border-border border-b pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        {site.author}
-      </h1>
-      <a
-        target="_blank"
-        href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}feed.xml`}
-        class="inline-block"
-        aria-label="RSS Feed"
-        title="RSS Feed"
+    <section
+      id="hero"
+      class="hero-fade border-border border-b pt-8 pb-6 sm:pt-12 sm:pb-8"
+    >
+      <div class="my-4 flex flex-wrap items-baseline gap-3 sm:my-8">
+        <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+          {site.author}
+        </h1>
+        <a
+          target="_blank"
+          href={`${import.meta.env.BASE_URL.replace(/\/?$/, "/")}feed.xml`}
+          class="inline-block"
+          aria-label="RSS Feed"
+          title="RSS Feed"
+        >
+          <IconRss
+            width={20}
+            height={20}
+            class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
+          />
+          <span class="sr-only">RSS Feed</span>
+        </a>
+      </div>
+
+      <p
+        lang="bn"
+        class="font-bengali text-muted-foreground -mt-2 mb-4 text-xl opacity-90 sm:text-2xl"
       >
-        <IconRss
-          width={20}
-          height={20}
-          class="stroke-accent scale-125 stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+        শাহাদ মাহমুদ
+      </p>
 
       <p class="text-accent text-lg font-medium">
         Sr. AI Engineer &amp; Team Lead @ Delineate (YC W25)
       </p>
 
-      <p class="mt-4 max-w-2xl">
+      <p class="mt-3 max-w-2xl text-xl font-semibold sm:text-2xl">
+        I build LLM and agentic systems for pharmaceutical research, and
+        research Bangla NLP.
+      </p>
+
+      <p class="text-muted-foreground mt-4 max-w-2xl">
         I lead a 10+ person AI team building production LLM and agentic
         systems for pharmaceutical research at
         <LinkButton
-          class="hover:text-accent underline decoration-dashed underline-offset-4"
+          class="text-foreground hover:text-accent underline decoration-dashed underline-offset-4"
           href="https://delineate.pro/"
           target="_blank"
         >
@@ -88,6 +113,24 @@ const publications = [
         right, not just convincing. 5+ years of experience in NLP, ML, and AI
         engineering, with publications at EMNLP 2023 and NAACL 2025.
       </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <a
+          href={getRelativeLocaleUrl(locale, "blogs")}
+          class="border-accent bg-accent text-accent-foreground hover:brightness-90 inline-flex items-center gap-1.5 rounded-sm border px-4 py-2 text-sm font-medium transition-[filter] focus-visible:outline-offset-2"
+        >
+          Read the blog
+          <IconArrowRight width={14} height={14} class="rtl:-rotate-180" />
+        </a>
+        <a
+          href={resumeUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="border-border text-foreground hover:border-accent hover:text-accent inline-flex items-center gap-1.5 rounded-sm border px-4 py-2 text-sm font-medium transition-colors"
+        >
+          Résumé
+        </a>
+      </div>
 
       {
         socials.length > 0 && (
@@ -109,23 +152,20 @@ const publications = [
       ]}
     >
       <h2 class="text-2xl font-semibold tracking-wide">Publications</h2>
-      <ul>
+      <ul class="mt-4 flex flex-col gap-5">
         {
           publications.map(pub => (
-            <li class="my-6">
-              <a
+            <li>
+              <TokenChip
                 href={pub.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class:list={[
-                  "text-accent inline-block text-lg font-medium",
-                  "decoration-dashed underline-offset-4 hover:underline",
-                  "focus-visible:no-underline focus-visible:underline-offset-0",
-                ]}
               >
+                {pub.short} · {pub.venue.replace(/^Findings of /, "")}
+              </TokenChip>
+              <p class="text-muted-foreground mt-1.5 max-w-2xl text-sm">
                 {pub.title}
-              </a>
-              <p class="text-muted-foreground">{pub.venue}</p>
+              </p>
             </li>
           ))
         }

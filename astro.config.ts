@@ -75,6 +75,29 @@ export default defineConfig({
       styles: ["normal", "italic"],
       formats: ["woff", "ttf"],
     },
+    // Serif reading face — scoped to post body prose only (see typography.css).
+    // Self-hosted via Astro's font API (downloaded at build time, served from
+    // our own origin), so no external request / preconnect is needed.
+    {
+      name: "Newsreader",
+      cssVariable: "--font-newsreader",
+      provider: fontProviders.google(),
+      fallbacks: ["Georgia", "serif"],
+      weights: [400, 500, 600],
+      styles: ["normal", "italic"],
+      formats: ["woff2"],
+    },
+    // Signature Bangla hero line only — one weight, minimal payload.
+    {
+      name: "Noto Serif Bengali",
+      cssVariable: "--font-noto-serif-bengali",
+      provider: fontProviders.google(),
+      fallbacks: ["serif"],
+      weights: [600],
+      styles: ["normal"],
+      subsets: ["bengali"],
+      formats: ["woff2"],
+    },
   ],
   env: {
     schema: {

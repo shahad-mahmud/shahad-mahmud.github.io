@@ -1,0 +1,22 @@
+---
+/**
+ * Signature UI element — a small, bounded mono chip with a leading accent
+ * tick (`.token-chip`, defined in global.css). Echoes a tokenizer
+ * segmenting text: used for publication badges (index.astro) and post-list
+ * category chips (Card.astro).
+ *
+ * Renders as an `<a>` when `href` is given, otherwise a static `<span>` —
+ * same pattern as LinkButton.astro.
+ */
+import type { HTMLAttributes } from "astro/types";
+
+type Props = { href?: string } & Omit<HTMLAttributes<"a">, "href">;
+
+const { href, class: className, ...attrs } = Astro.props;
+
+const Tag = href ? "a" : "span";
+---
+
+<Tag href={href} class:list={["token-chip", className]} {...attrs}>
+  <slot />
+</Tag>
