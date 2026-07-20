@@ -3,7 +3,6 @@ export interface UIStrings {
     home: string;
     blogs: string;
     tags: string;
-    resume: string;
   };
   post: {
     publishedAt: string;

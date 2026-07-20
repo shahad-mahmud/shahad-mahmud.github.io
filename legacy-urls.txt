@@ -17,4 +17,3 @@
 /feed.xml
 /sitemap.xml
 /robots.txt
-/assets/documents/md_shahad_mahmud_chowdhury.pdf
