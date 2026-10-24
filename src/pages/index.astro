@@ -10,6 +10,7 @@ import SelectedWork from "@/components/home/SelectedWork.astro";
 import Research from "@/components/home/Research.astro";
 import Writing from "@/components/home/Writing.astro";
 import Contact from "@/components/home/Contact.astro";
+import Testimonial from "@/components/home/Testimonial.astro";
 import { getSortedPosts } from "@/utils/getSortedPosts";
 import config from "@/config";
 
@@ -58,6 +59,7 @@ const quickNav = [
     <Research />
     {recentPosts.length > 0 && <Writing posts={recentPosts} />}
     <Marquee label="Tools I use" items={tools} />
+    <Testimonial />
     <Contact />
   </main>
   <Footer class="pb-20 sm:pb-0" />

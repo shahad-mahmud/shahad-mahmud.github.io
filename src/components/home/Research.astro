@@ -7,25 +7,8 @@ import Pill from "@/components/ui/Pill.astro";
 import Arrow from "@/components/ui/Arrow.astro";
 import Eyebrow from "@/components/ui/Eyebrow.astro";
 import Stat from "@/components/ui/Stat.astro";
+import { papers } from "@/data/profile";
 
-const papers = [
-  {
-    short: "BanNERD",
-    venue: "NAACL 2025",
-    title:
-      "BanNERD: A Benchmark Dataset and Context-Driven Approach for Bangla Named Entity Recognition",
-    blurb: "Benchmark dataset and context-driven approach for Bangla NER.",
-    url: "https://aclanthology.org/2025.findings-naacl.388/",
-  },
-  {
-    short: "BanLemma",
-    venue: "EMNLP 2023",
-    title:
-      "BanLemma: A Word Formation Dependent Rule and Dictionary Based Bangla Lemmatizer",
-    blurb: "Rule + dictionary lemmatizer. 96.36% on human-annotated data.",
-    url: "https://aclanthology.org/2023.findings-emnlp.241/",
-  },
-];
 
 const external = { target: "_blank", rel: "noopener noreferrer" };
 ---

@@ -27,6 +27,17 @@ export function buildPersonSchema(config: ResolvedAstroPaperConfig) {
       "@type": "Organization",
       name: AUTHOR_EMPLOYER,
     },
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Rajshahi University of Engineering & Technology",
+    },
+    knowsAbout: [
+      "Large language models",
+      "Agentic AI",
+      "LLM evaluation",
+      "Natural language processing",
+      "Bangla NLP",
+    ],
     sameAs: config.socials
       .filter((social) => !social.url.startsWith("mailto:"))
       .map((social) => social.url),

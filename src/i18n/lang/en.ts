@@ -5,6 +5,7 @@ export default {
     home: "Home",
     blogs: "Writing",
     tags: "Tags",
+    about: "About",
   },
   post: {
     publishedAt: "Published at",
