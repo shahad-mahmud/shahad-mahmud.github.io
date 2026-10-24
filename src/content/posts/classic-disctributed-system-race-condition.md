@@ -20,7 +20,7 @@ Our initial flow was straightforward:
 
 Over the time we faced some interesting problems and solved those in some well thought ways. Give a quick glimpse at our system architecture and keep reading to learn more.
 
-![final system architecture](https://myhuvzumtdjhrczfdlxb.supabase.co/storage/v1/object/public/personal-site/assets/blogs/system-design/distributed-race-condition.png "Final system architecture")
+![final system architecture](/assets/images/posts/system-design/distributed-race-condition.svg "Final system architecture")
 
 ## Real-Time Streaming vs. Stateless Workers
 
@@ -34,7 +34,7 @@ Our workers are **stateless** and **independent**. They have no shared state, so
 
 To solve this, we pivoted: instead of sending small independent chunks (like "Hello", " world", "\!"), we started sending the *full, concatenated message* every time ("Hello", "Hello world", "Hello world\!") from the AI service.
 
-![Concat and Pass](https://myhuvzumtdjhrczfdlxb.supabase.co/storage/v1/object/public/personal-site/assets/blogs/system-design/concat-and-pass.png "Concat and Pass")
+![Concat and Pass](/assets/images/posts/system-design/concat-and-pass.svg "Concat and Pass")
 
 ### A Classic Race Condition
 
