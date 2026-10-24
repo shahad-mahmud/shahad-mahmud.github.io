@@ -99,6 +99,7 @@ const ogImage = ogImageUrl
 const resolvedCanonicalURL = canonicalURL
   ? new URL(canonicalURL, Astro.site).href
   : new URL(canonical, Astro.site).href;
+import { linkedin } from "@/data/profile";
 ---
 
 <PostLayout
@@ -282,11 +283,16 @@ const resolvedCanonicalURL = canonicalURL
         </p>
       </div>
       <div class="flex flex-wrap gap-2 sm:flex-col">
-        <Button href={getRelativeLocaleUrl(locale, "about")} variant="ink">
-          About me
+        <Button
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          variant="ink"
+        >
+          Follow on LinkedIn
         </Button>
-        <Button href="mailto:shahad9381@gmail.com" variant="outline">
-          Get in touch
+        <Button href={getRelativeLocaleUrl(locale, "about")} variant="outline">
+          About me
         </Button>
       </div>
     </Tile>

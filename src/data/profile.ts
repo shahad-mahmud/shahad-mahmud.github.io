@@ -3,6 +3,8 @@
  * testimonial tile) and /about, so titles and dates stay in one place.
  */
 
+export const linkedin = "https://www.linkedin.com/in/shahad-mahmud/";
+
 export type Role = {
   org: string;
   /** Current or final title. */
@@ -81,7 +83,7 @@ export const papers = [
 export const testimonial = {
   name: "Nafeo Alam",
   title: "Lead Software Engineer, Delineate",
-  url: "https://www.linkedin.com/in/shahad-mahmud/details/recommendations/",
+  url: `${linkedin}details/recommendations/`,
   /** One line for the home page. */
   pull: "One of the calmest, most level headed technical leaders I have worked with.",
   /** The full recommendation for /about, one entry per paragraph. */

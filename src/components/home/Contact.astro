@@ -6,7 +6,7 @@ import Eyebrow from "@/components/ui/Eyebrow.astro";
 import Button from "@/components/ui/Button.astro";
 import Arrow from "@/components/ui/Arrow.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { journey } from "@/data/profile";
+import { journey, linkedin } from "@/data/profile";
 import config from "@/config";
 
 const locale = Astro.currentLocale ?? config.site.lang;
@@ -72,7 +72,7 @@ const locale = Astro.currentLocale ?? config.site.lang;
       </Button>
       <Button
         variant="outline"
-        href="https://www.linkedin.com/in/shahad-mahmud/"
+        href={linkedin}
         target="_blank"
         rel="noopener noreferrer"
       >

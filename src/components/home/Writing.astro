@@ -33,6 +33,8 @@ const items = posts.map(post => {
 });
 
 const categories = [...new Set(items.map(i => i.category))];
+import Button from "@/components/ui/Button.astro";
+import { linkedin } from "@/data/profile";
 ---
 
 <section
@@ -91,6 +93,30 @@ const categories = [...new Set(items.map(i => i.category))];
         </li>
       ))
     }
+    <li class="flex lg:col-span-2">
+      <Tile
+        tone="ink"
+        pad="sm"
+        class="w-full gap-4 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <span class="flex flex-col gap-1">
+          <span class="font-display text-lg leading-snug font-bold tracking-[-0.015em] sm:text-xl">
+            Shorter notes, more often, on LinkedIn.
+          </span>
+          <span class="text-ink-muted text-sm">
+            What I'm learning building LLM systems for pharma, between posts.
+          </span>
+        </span>
+        <Button
+          href={linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="shrink-0 self-start sm:self-auto"
+        >
+          Follow on LinkedIn <Arrow />
+        </Button>
+      </Tile>
+    </li>
   </ul>
 </section>
 
