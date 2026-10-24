@@ -1,0 +1,280 @@
+---
+/**
+ * "01 Selected work": six project tiles. A 2-column bento on tablet/desktop; on
+ * phones a horizontal snap carousel with a position counter.
+ */
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+
+const tileClass =
+  "w-[82%] shrink-0 snap-start scroll-ms-4 gap-5 sm:w-auto sm:shrink";
+---
+
+<section
+  id="work"
+  aria-labelledby="work-title"
+  class="flex scroll-mt-6 flex-col gap-5"
+>
+  <SectionHeading index="01" id="work-title">
+    Selected work
+    <span slot="aside" class="text-muted-foreground text-sm">
+      <span class="sm:hidden" data-work-pos>1 / 6</span>
+      <span class="max-sm:hidden">What I've shipped at Delineate</span>
+    </span>
+  </SectionHeading>
+
+  <div
+    data-work-track
+    class="stagger -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0"
+  >
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Trust · 2026</Eyebrow>
+      <div
+        role="img"
+        aria-label="An extracted value linked to its page, table and position in the source PDF"
+        class="flex flex-col gap-2 font-mono text-xs"
+      >
+        <div class="bg-muted flex items-center justify-between gap-3 rounded-xl p-3">
+          <span><span class="text-muted-foreground">CL/F</span> 0.29 L/h</span>
+          <span class="bg-signal text-signal-foreground rounded-full px-2 py-0.5"
+            >p. 42</span
+          >
+        </div>
+        <div class="text-muted-foreground flex flex-wrap gap-x-3 gap-y-1 px-1">
+          <span>↳ Table 3 · row 4</span>
+          <span>bbox 112,388,204,402</span>
+          <span>sha256 9f1c…</span>
+        </div>
+      </div>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Every extracted value cites its source
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          A citation audit trail for clinical documents: each number traces to
+          its page, table and position in the PDF. Cited cells went from 20% to
+          49% on covariate extraction.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Agents · 2026</Eyebrow>
+      <ol
+        aria-label="Example modelling plan"
+        class="m-0 flex list-none flex-col gap-1.5 p-0 font-mono text-xs"
+      >
+        {
+          [
+            { step: "read the paper", done: true },
+            { step: "extract the model spec", done: true },
+            { step: "build it in nlmixr2", done: true },
+            { step: "replicate the figures", done: false },
+          ].map((item, i) => (
+            <li class="bg-muted flex items-center gap-3 rounded-lg px-3 py-2">
+              <span class="text-muted-foreground">0{i + 1}</span>
+              <span class="flex-1">{item.step}</span>
+              {item.done ? (
+                <span class="text-success" aria-label="done">✓</span>
+              ) : (
+                <span
+                  class="bg-signal animate-pulse-ring size-2 rounded-full"
+                  aria-label="in progress"
+                />
+              )}
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Sidekick, an agent for pharma modelling
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          Plans and runs PopPK replication and model-based meta-analysis in R
+          and Python notebooks, with a scientist signing off at each checkpoint.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Agents · 2025</Eyebrow>
+      <svg
+        viewBox="0 0 420 150"
+        role="img"
+        aria-label="Agent graph: a planner routes to RAG, code execution and memory"
+        class="h-auto w-full"
+      >
+        <g fill="none" stroke-width="2" class="stroke-signal">
+          <path class="flow-dash" d="M118 75 C 170 75, 170 25, 222 25"></path>
+          <path class="flow-dash" d="M118 75 L 222 75"></path>
+          <path class="flow-dash" d="M118 75 C 170 75, 170 125, 222 125"></path>
+        </g>
+        <path
+          d="M318 25 C 360 25, 360 75, 398 75 M318 75 L398 75 M318 125 C 360 125, 360 75, 398 75"
+          fill="none"
+          stroke="currentColor"
+          stroke-opacity=".25"
+          stroke-width="1.5"></path>
+        <rect x="18" y="58" width="100" height="34" rx="17" class="fill-primary"
+        ></rect>
+        <text
+          x="68"
+          y="80"
+          text-anchor="middle"
+          class="fill-primary-foreground font-mono text-[12px]">planner</text
+        >
+        {
+          [
+            { y: 8, label: "rag" },
+            { y: 58, label: "code exec" },
+            { y: 108, label: "memory" },
+          ].map(node => (
+            <>
+              <rect
+                x="222"
+                y={node.y}
+                width="96"
+                height="34"
+                rx="17"
+                fill="none"
+                stroke="currentColor"
+                stroke-opacity=".35"
+              />
+              <text
+                x="270"
+                y={node.y + 22}
+                text-anchor="middle"
+                fill="currentColor"
+                class="font-mono text-[12px]"
+              >
+                {node.label}
+              </text>
+            </>
+          ))
+        }
+        <circle cx="404" cy="75" r="6" fill="currentColor"></circle>
+      </svg>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Multi-agent research chat
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          LangGraph over Claude, Gemini and OpenAI — Qdrant RAG, Jupyter-kernel
+          code execution, Postgres checkpointing, SSE streaming.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Infra · 2025</Eyebrow>
+      <div
+        role="img"
+        aria-label="End-to-end latency: V2 is 45 percent lower than V1"
+        class="flex flex-col gap-3 py-2"
+      >
+        <div class="flex items-center gap-3">
+          <span class="text-muted-foreground w-7 font-mono text-xs">V1</span>
+          <span class="bg-muted grow-bar block h-6 flex-1 rounded-lg"></span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-muted-foreground w-7 font-mono text-xs">V2</span>
+          <span class="flex flex-1 items-center gap-3">
+            <span class="bg-signal grow-bar block h-6 w-[55%] rounded-lg"
+            ></span>
+            <span class="text-muted-foreground font-mono text-xs">−45%</span>
+          </span>
+        </div>
+      </div>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Document parsing, rebuilt on vLLM
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          Ray on Kubernetes. Fixed production memory leaks and pod-scaling
+          issues along the way.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Evals</Eyebrow>
+      <div class="grid grid-cols-1 gap-2 font-mono text-xs min-[420px]:grid-cols-2">
+        <div class="bg-muted rounded-xl p-3">
+          <div class="text-muted-foreground">ground truth</div>
+          <div>dose: 10 mg/kg</div>
+        </div>
+        <div class="bg-muted rounded-xl p-3">
+          <div class="text-muted-foreground">prediction</div>
+          <div>
+            dose: 10 mg/kg <span class="text-success" aria-label="match">✓</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          An eval harness that gates every release
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          Side-by-side truth vs prediction with LLM-as-judge scoring, in front
+          of every extraction and chart-element API.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" tone="primary" class={`${tileClass} min-h-64`}>
+      <span aria-hidden="true" class="dot-grid absolute inset-0 opacity-15"
+      ></span>
+      <Eyebrow class="relative">Bangla NLP · 2021–2024</Eyebrow>
+      <span
+        lang="bn"
+        aria-hidden="true"
+        class="font-bengali relative text-7xl leading-none font-semibold sm:text-8xl"
+        >ভাষা</span
+      >
+      <div class="relative mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Making NLP work for Bangla
+        </h3>
+        <p class="text-primary-muted m-0 text-[15px]">
+          ASR, lemmatization, NER and language-model pretraining — two papers
+          and a 25k-download toolkit.
+        </p>
+      </div>
+    </Tile>
+  </div>
+</section>
+
+<script>
+  // Phone carousel: keep the "n / total" counter in sync with the scroll position.
+  function trackWork() {
+    const track = document.querySelector<HTMLElement>("[data-work-track]");
+    const pos = document.querySelector<HTMLElement>("[data-work-pos]");
+    if (!track || !pos) return;
+    const total = track.children.length;
+    track.addEventListener(
+      "scroll",
+      () => {
+        const first = track.children[0] as HTMLElement;
+        const step = first.offsetWidth + 12;
+        const i = Math.min(total - 1, Math.round(track.scrollLeft / step));
+        pos.textContent = `${i + 1} / ${total}`;
+      },
+      { passive: true }
+    );
+  }
+  document.addEventListener("astro:page-load", trackWork);
+</script>

@@ -53,7 +53,9 @@ const t = useTranslations(locale);
     pageTitle={`${t.pages.categoryTitle}: ${categoryName}`}
     pageDesc={`${t.pages.categoryDesc} "${categoryName}".`}
   >
-    <ul>
+    <ul
+      class="stagger m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
+    >
       {page.data.map(data => <Card {...data} />)}
     </ul>
   </Main>

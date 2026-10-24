@@ -1,0 +1,44 @@
+---
+/**
+ * Small rounded tag (topics, tools, venues). Renders an <a> with `href`.
+ *   muted    default chip on surface tiles
+ *   primary  highlighted topic
+ *   outline  on coloured tiles
+ */
+import type { HTMLAttributes } from "astro/types";
+
+type Props = {
+  href?: string;
+  tone?: "muted" | "primary" | "outline";
+  mono?: boolean;
+} & Omit<HTMLAttributes<"a">, "href">;
+
+const {
+  href,
+  tone = "muted",
+  mono = true,
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const Tag = href ? "a" : "span";
+
+const toneClass = {
+  muted: "bg-muted text-foreground",
+  primary: "bg-primary text-primary-foreground",
+  outline: "border border-current/30",
+}[tone];
+---
+
+<Tag
+  href={href}
+  class:list={[
+    "inline-flex items-center rounded-full px-3 py-1 text-xs whitespace-nowrap",
+    mono ? "font-mono" : "font-sans text-[13px]",
+    toneClass,
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Tag>

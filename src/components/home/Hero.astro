@@ -1,0 +1,116 @@
+---
+import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import profile from "@/assets/images/shahad-profile.jpg";
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Button from "@/components/ui/Button.astro";
+import Arrow from "@/components/ui/Arrow.astro";
+import LiveDot from "@/components/ui/LiveDot.astro";
+import Stat from "@/components/ui/Stat.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import { testimonial } from "@/data/profile";
+import config from "@/config";
+
+const locale = Astro.currentLocale ?? config.site.lang;
+---
+
+<Bento class="grid-cols-2">
+  <Tile
+    tag="section"
+    span={2}
+    rows={2}
+    pad="lg"
+    aria-labelledby="hero-title"
+    class="col-span-2 justify-between gap-8 lg:min-h-[28rem]"
+  >
+    <div class="flex items-center gap-3">
+      <Image
+        src={profile}
+        alt=""
+        width={96}
+        height={96}
+        class="size-12 shrink-0 rounded-2xl object-cover object-[60%_30%] lg:hidden"
+      />
+      <span class="text-muted-foreground flex items-center gap-2.5 text-[13px]">
+        <LiveDot class="max-lg:hidden" />
+        Sr. AI Engineer &amp; Team Lead · Delineate (YC W25)
+      </span>
+    </div>
+    <div class="flex flex-col gap-4">
+      <h1
+        id="hero-title"
+        class="font-display m-0 text-[2.5rem] leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-[2.875rem]"
+      >
+        <span class="block">Hi, I'm Shahad.</span>
+        <span class="text-muted-foreground">I build AI that pharma can trust.</span>
+      </h1>
+      <p class="text-muted-foreground m-0 max-w-md text-[17px]">
+        Agents, document extraction and the evals behind them. Bangla NLP on
+        the side.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2.5">
+      <Button href="mailto:shahad9381@gmail.com">
+        Get in touch <Arrow />
+      </Button>
+      <Button variant="outline" href={getRelativeLocaleUrl(locale, "blogs")}>
+        Read my writing
+      </Button>
+    </div>
+  </Tile>
+
+  <Tile
+    tone="muted"
+    rows={2}
+    pad="sm"
+    class="hidden justify-end p-0! lg:flex lg:min-h-[28rem]"
+  >
+    <Image
+      src={profile}
+      alt="Shahad Mahmud, arms crossed, leaning against a red brick wall"
+      widths={[360, 540, 718]}
+      sizes="(min-width: 1024px) 280px, 50vw"
+      loading="eager"
+      class="absolute inset-0 size-full object-cover object-[60%_center]"
+    />
+    <span
+      class="bg-surface text-foreground relative m-3.5 self-start rounded-full px-3 py-1.5 text-[13px]"
+    >
+      Dhaka, Bangladesh
+    </span>
+  </Tile>
+
+  <Tile tone="primary" pad="sm" class="col-span-2 sm:col-span-1">
+    <Stat
+      label="Leading"
+      value="10"
+      countTo={10}
+      caption="AI engineers at Delineate"
+    />
+  </Tile>
+
+  <Tile tag="figure" pad="sm" class="col-span-2 m-0 justify-between gap-5 sm:col-span-1">
+    <Eyebrow>What colleagues say</Eyebrow>
+    <blockquote
+      class="font-display m-0 text-xl leading-[1.2] font-bold tracking-[-0.02em]"
+    >
+      <span aria-hidden="true" class="text-signal">“</span>{
+        testimonial.pull
+      }<span aria-hidden="true" class="text-signal">”</span>
+    </blockquote>
+    <figcaption class="flex items-end justify-between gap-3 text-[13px]">
+      <span>
+        <span class="block font-semibold">{testimonial.name}</span>
+        <span class="text-muted-foreground">{testimonial.title}</span>
+      </span>
+      <a
+        href={getRelativeLocaleUrl(locale, "about")}
+        aria-label="Read the full recommendation"
+        class="group"
+      >
+        <Arrow circle />
+      </a>
+    </figcaption>
+  </Tile>
+</Bento>

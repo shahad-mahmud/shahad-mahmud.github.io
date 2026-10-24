@@ -66,6 +66,36 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   fonts: [
+    // "Ink & Signal" type system: display (headings, big numbers), sans
+    // (body/UI), mono (labels, eyebrows, code). See src/styles/theme.css.
+    {
+      name: "Bricolage Grotesque",
+      cssVariable: "--font-bricolage-grotesque",
+      provider: fontProviders.google(),
+      fallbacks: ["system-ui", "sans-serif"],
+      weights: [500, 700, 800],
+      styles: ["normal"],
+      formats: ["woff2"],
+    },
+    {
+      name: "Inter",
+      cssVariable: "--font-inter",
+      provider: fontProviders.google(),
+      fallbacks: ["system-ui", "sans-serif"],
+      weights: [400, 500, 600],
+      styles: ["normal"],
+      formats: ["woff2"],
+    },
+    {
+      name: "JetBrains Mono",
+      cssVariable: "--font-jetbrains-mono",
+      provider: fontProviders.google(),
+      fallbacks: ["ui-monospace", "monospace"],
+      weights: [400, 500],
+      styles: ["normal"],
+      formats: ["woff2"],
+    },
+    // OG image font only (src/utils/ogTemplate.ts) — not loaded on pages.
     {
       name: "Google Sans Code",
       cssVariable: "--font-google-sans-code",

@@ -1,0 +1,207 @@
+---
+/**
+ * Living style guide for the "Ink & Signal" bento design system: tokens,
+ * type, motion and the src/components/ui primitives. Not linked from the
+ * site and kept out of search (noindex; not in sitemap.xml.ts).
+ */
+import Layout from "@/layouts/Layout.astro";
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Button from "@/components/ui/Button.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Stat from "@/components/ui/Stat.astro";
+import Pill from "@/components/ui/Pill.astro";
+import Arrow from "@/components/ui/Arrow.astro";
+import LiveDot from "@/components/ui/LiveDot.astro";
+import Marquee from "@/components/ui/Marquee.astro";
+
+const colors = [
+  { name: "background", role: "Ground", swatch: "bg-background border border-border" },
+  { name: "surface", role: "Tiles", swatch: "bg-surface border border-border" },
+  { name: "muted", role: "Chips, wells", swatch: "bg-muted" },
+  { name: "ink", role: "Authority, weight", swatch: "bg-ink" },
+  { name: "primary", role: "Competence, trust", swatch: "bg-primary" },
+  { name: "signal", role: "Action — fills only", swatch: "bg-signal" },
+  { name: "accent", role: "Text-safe links", swatch: "bg-accent" },
+  { name: "muted-foreground", role: "Secondary text", swatch: "bg-muted-foreground" },
+];
+
+const tools = ["Python", "Go", "LangGraph", "vLLM", "Ray", "Kubernetes", "Qdrant", "PyTorch"];
+---
+
+<Layout title="Design system · Shahad Mahmud">
+  <meta slot="head" name="robots" content="noindex" />
+  <main id="main-content" class="wide-layout flex flex-col gap-16 py-12 sm:gap-20">
+    <header class="flex flex-wrap items-end justify-between gap-6">
+      <div class="flex flex-col gap-3">
+        <Eyebrow>Design system</Eyebrow>
+        <h1
+          class="font-display m-0 text-5xl leading-none font-extrabold tracking-[-0.04em] sm:text-7xl"
+        >
+          Ink <span class="text-muted-foreground">&amp;</span> Signal
+        </h1>
+        <p class="text-muted-foreground m-0 max-w-xl text-lg">
+          Bone ground, near-black ink, deep navy for trust and a single orange
+          signal for action — roughly 60 / 30 / 10.
+        </p>
+      </div>
+      <button
+        id="theme-btn"
+        class="border-border bg-surface min-h-11 rounded-full border px-5 text-sm font-medium"
+      >
+        Toggle light / dark
+      </button>
+    </header>
+
+    <section aria-labelledby="ds-color" class="flex flex-col gap-6">
+      <SectionHeading index="01" id="ds-color">Colour</SectionHeading>
+      <div aria-hidden="true" class="flex h-4 overflow-hidden rounded-full">
+        <span class="bg-surface border-border flex-[60] border"></span>
+        <span class="bg-ink flex-[22]"></span>
+        <span class="bg-primary flex-[10]"></span>
+        <span class="bg-signal flex-[8]"></span>
+      </div>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {
+          colors.map(c => (
+            <div class="bg-surface border-border rounded-tile-sm flex flex-col gap-3 border p-3">
+              <span class:list={["h-16 rounded-2xl", c.swatch]} />
+              <span class="flex flex-col">
+                <code class="font-mono text-xs">{c.name}</code>
+                <span class="text-muted-foreground text-sm">{c.role}</span>
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section aria-labelledby="ds-type" class="flex flex-col gap-6">
+      <SectionHeading index="02" id="ds-type">Type</SectionHeading>
+      <Bento stagger={false}>
+        <Tile span={2} pad="lg" class="gap-2">
+          <Eyebrow>Display · Bricolage Grotesque 800</Eyebrow>
+          <p class="font-display m-0 text-6xl leading-none font-extrabold tracking-[-0.04em]">
+            Agents for science.
+          </p>
+        </Tile>
+        <Tile class="gap-2">
+          <Eyebrow>Sans · Inter</Eyebrow>
+          <p class="m-0 text-[17px]">
+            Production LLM systems for pharma research — built to be right, not
+            just convincing.
+          </p>
+        </Tile>
+        <Tile class="gap-2">
+          <Eyebrow>Mono · JetBrains Mono</Eyebrow>
+          <p class="m-0 font-mono text-sm">NAACL 2025 · 17 Nov 2025</p>
+          <Eyebrow class="mt-2">Serif · Newsreader (posts)</Eyebrow>
+          <p class="m-0 font-serif text-xl italic">right, not convincing</p>
+        </Tile>
+      </Bento>
+    </section>
+
+    <section aria-labelledby="ds-actions" class="flex flex-col gap-6">
+      <SectionHeading index="03" id="ds-actions">Actions &amp; labels</SectionHeading>
+      <div class="flex flex-wrap items-center gap-3">
+        <Button href="mailto:shahad9381@gmail.com">Get in touch <Arrow /></Button>
+        <Button variant="ink">Résumé</Button>
+        <Button variant="outline">GitHub</Button>
+        <Button size="lg">Large signal</Button>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <Pill tone="primary">System design</Pill>
+        <Pill>Distributed systems</Pill>
+        <Pill>NAACL 2025</Pill>
+        <Pill mono={false}>LangGraph</Pill>
+        <span class="text-muted-foreground ms-3 flex items-center gap-2 text-sm">
+          <LiveDot /> AI Team Lead · Delineate (YC W25)
+        </span>
+      </div>
+    </section>
+
+    <section aria-labelledby="ds-tiles" class="flex flex-col gap-6">
+      <SectionHeading index="04" id="ds-tiles">
+        Tiles
+        <a slot="aside" href="#ds-tiles" class="text-muted-foreground text-sm">
+          All tones →
+        </a>
+      </SectionHeading>
+      <Bento>
+        <Tile span={2} rows={2} pad="lg" class="min-h-96 justify-between gap-8">
+          <span class="text-muted-foreground flex items-center gap-2 text-sm">
+            <LiveDot /> surface · span 2 × rows 2
+          </span>
+          <h3
+            class="font-display m-0 text-5xl leading-[1.02] font-extrabold tracking-[-0.04em]"
+          >
+            Hi, I'm Shahad.<br /><span class="text-muted-foreground">I build</span>{" "}
+            multi-agent systems.
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <Button href="mailto:shahad9381@gmail.com">Get in touch <Arrow /></Button>
+            <Button variant="outline">Résumé</Button>
+          </div>
+        </Tile>
+        <Tile tone="primary">
+          <Stat label="vLLM V2" value="−45%" countTo={45} caption="end-to-end latency" />
+        </Tile>
+        <Tile tone="ink">
+          <Stat label="PyPI" value="25k+" countTo={25} caption="downloads" />
+        </Tile>
+        <Tile>
+          <Stat label="Leading" value="10" countTo={10} caption="AI engineers" />
+        </Tile>
+        <Tile tone="muted" class="items-center justify-center font-mono text-xs">
+          muted · photo slot
+        </Tile>
+        <Tile href="#ds-tiles" span={2} class="gap-4">
+          <span class="flex justify-between">
+            <Eyebrow>Linked tile · hover me</Eyebrow>
+            <Arrow />
+          </span>
+          <div class="flex flex-col gap-3" role="img" aria-label="V2 latency is 45% lower than V1">
+            <span class="bg-muted grow-bar block h-6 w-full rounded-lg"></span>
+            <span class="bg-signal grow-bar block h-6 w-[55%] rounded-lg"></span>
+          </div>
+          <h3 class="font-display m-0 text-[22px] font-bold tracking-[-0.02em]">
+            Document parsing, rebuilt on vLLM
+          </h3>
+        </Tile>
+        <Tile tone="primary" span={2} class="gap-4">
+          <span aria-hidden="true" class="dot-grid absolute inset-0 opacity-15"></span>
+          <Eyebrow class="relative">Primary · dot grid</Eyebrow>
+          <span
+            lang="bn"
+            aria-hidden="true"
+            class="font-bengali relative text-7xl leading-none font-semibold"
+          >ভাষা</span>
+          <svg viewBox="0 0 300 40" aria-hidden="true" class="relative w-full max-w-xs">
+            <path
+              class="flow-dash stroke-signal"
+              d="M4 20 H296"
+              fill="none"
+              stroke-width="2"></path>
+          </svg>
+        </Tile>
+        <Tile tone="signal" class="justify-between gap-6">
+          <Eyebrow>Signal · max one per page</Eyebrow>
+          <p class="font-display m-0 text-2xl font-extrabold tracking-[-0.03em]">
+            Let's talk.
+          </p>
+        </Tile>
+      </Bento>
+    </section>
+
+    <section aria-labelledby="ds-motion" class="flex flex-col gap-6">
+      <SectionHeading index="05" id="ds-motion">Motion</SectionHeading>
+      <p class="text-muted-foreground m-0 max-w-2xl">
+        Tiles rise in a stagger, links lift and nudge their arrow, numbers count
+        up, the status dot pulses, agent edges flow and this strip loops (hover
+        to pause). Everything is off under reduced motion.
+      </p>
+      <Marquee label="Tools I use" items={tools} />
+    </section>
+  </main>
+</Layout>

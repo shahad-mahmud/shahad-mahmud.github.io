@@ -4,8 +4,10 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 import { buildPostUrl } from "@/utils/postUrl";
 import { toTransitionName } from "@/utils/toTransitionName";
 import { slugifyCategory } from "@/utils/slugify";
+import { categoryLabel } from "@/utils/categoryLabel";
 import Datetime from "./Datetime.astro";
 import TokenChip from "./TokenChip.astro";
+import Arrow from "./ui/Arrow.astro";
 import config from "@/config";
 
 type Props = {
@@ -20,35 +22,42 @@ const category = categories?.[0];
 const locale = Astro.currentLocale ?? config.site.lang;
 ---
 
-<li class="border-border/70 border-b py-6 first:pt-0 last:border-b-0">
+<!--
+  Post tile. The title link is stretched over the whole tile (after:inset-0),
+  while the category chip sits above it so it stays its own link.
+-->
+<li
+  class="group bg-surface border-border rounded-tile-sm sm:rounded-tile ease-out-expo hover:shadow-lift relative flex flex-col gap-3 border p-5 transition-[translate,box-shadow] duration-400 hover:-translate-y-1 sm:p-6"
+>
   <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5">
     {
       category && (
         <TokenChip
-          href={getRelativeLocaleUrl(locale, `categories/${slugifyCategory(category)}/`)}
+          href={getRelativeLocaleUrl(
+            locale,
+            `categories/${slugifyCategory(category)}/`
+          )}
+          class="relative z-10"
         >
-          {category}
+          {categoryLabel(category)}
         </TokenChip>
       )
     }
-    <Datetime {...props} class="text-xs" />
+    <Datetime {...props} class="font-mono text-xs" />
   </div>
   <a
     href={buildPostUrl({ ...data, slug: id })}
-    class:list={[
-      "group text-foreground mt-1.5 inline-block text-lg font-semibold",
-      "decoration-dashed underline-offset-4 hover:underline",
-      "focus-visible:no-underline focus-visible:underline-offset-0",
-    ]}
+    class="text-foreground after:absolute after:inset-0 after:rounded-[inherit] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-dashed"
   >
     <Heading
       transition:name={toTransitionName(title)}
-      class="group-hover:text-accent transition-colors"
+      class="font-display m-0 text-xl leading-snug font-bold tracking-[-0.015em] sm:text-[22px]"
     >
       {title}
     </Heading>
   </a>
-  <p class="text-muted-foreground mt-1 max-w-prose text-sm text-balance">
+  <p class="text-muted-foreground m-0 line-clamp-3 text-sm">
     {description}
   </p>
+  <Arrow circle class="mt-auto self-end" />
 </li>

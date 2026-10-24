@@ -19,12 +19,18 @@ const backUrl = config.features.showBackButton
 <main
   data-backUrl={backUrl}
   id="main-content"
-  class:list={["app-layout pb-4", className]}
+  class:list={["wide-layout flex flex-col gap-3 pb-10 sm:gap-4", className]}
 >
-  <h1 class="text-2xl font-semibold tracking-tight sm:text-3xl">
-    {pageTitle}
-  </h1>
-  <p class="text-muted-foreground mt-2 mb-6 italic">{pageDesc}</p>
+  <header
+    class="bg-surface border-border rounded-tile-sm sm:rounded-tile animate-rise flex flex-col gap-3 border p-6 sm:p-9"
+  >
+    <h1
+      class="font-display m-0 text-4xl leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-6xl"
+    >
+      {pageTitle}
+    </h1>
+    {pageDesc && <p class="text-muted-foreground m-0 text-lg">{pageDesc}</p>}
+  </header>
   <slot />
 </main>
 

@@ -1,0 +1,262 @@
+---
+import { Image } from "astro:assets";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import Footer from "@/components/Footer.astro";
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Button from "@/components/ui/Button.astro";
+import Arrow from "@/components/ui/Arrow.astro";
+import Pill from "@/components/ui/Pill.astro";
+import profile from "@/assets/images/shahad-profile.jpg";
+import { journey, linkedin, papers, testimonial } from "@/data/profile";
+import { buildPersonSchema } from "@/utils/structuredData";
+import { useTranslations } from "@/i18n";
+import config from "@/config";
+
+const t = useTranslations(Astro.currentLocale ?? config.site.lang);
+
+const description =
+  "Shahad Mahmud leads the AI team at Delineate (YC W25), building LLM and agentic systems for pharmaceutical research. Bangla NLP researcher, EMNLP 2023 and NAACL 2025.";
+
+const openTo = [
+  {
+    title: "Talks",
+    body: "Meetups, conferences, podcasts and university sessions on LLM systems, evals and Bangla NLP.",
+  },
+  {
+    title: "Guidance",
+    body: "Career and technical guidance for engineers moving into AI and students starting out in NLP research.",
+  },
+  {
+    title: "Comparing notes",
+    body: "Building LLM systems that have to be accurate? Happy to talk agents, evals and document extraction.",
+  },
+];
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: buildPersonSchema(config),
+};
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<Layout title={`${t.nav.about} | ${config.site.title}`} {description}>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(profilePageSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main
+    id="main-content"
+    class="wide-layout flex flex-col gap-14 pt-2 pb-10 sm:gap-20"
+  >
+    <Bento stagger>
+      <Tile
+        tag="header"
+        span={3}
+        rows={2}
+        pad="lg"
+        class="gap-6 sm:col-span-2 lg:col-span-3"
+      >
+        <Eyebrow>{t.nav.about}</Eyebrow>
+        <h1
+          class="font-display m-0 text-[2.5rem] leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-[3.25rem]"
+        >
+          I build AI systems that have to be right.
+        </h1>
+        <div
+          class="text-muted-foreground flex max-w-2xl flex-col gap-4 text-[17px]"
+        >
+          <p class="m-0">
+            I'm Shahad Mahmud, an AI engineer from Bangladesh. I lead the AI
+            team at Delineate (YC W25), where we build LLM and agentic systems
+            for pharmaceutical research. There, an answer that sounds right but
+            isn't is worse than no answer, so a lot of my time goes into evals
+            and the engineering that makes models dependable in production.
+          </p>
+          <p class="m-0">
+            I came to this through Bangla NLP. My first years were speech
+            recognition, language-model pre-training and the lemmatization and
+            named-entity work that became papers at EMNLP 2023 and NAACL 2025:
+            building for a language most tools don't serve well.
+          </p>
+          <p class="m-0">
+            I still ship code, and I write here about what I learn shipping
+            these systems.
+          </p>
+        </div>
+      </Tile>
+
+      <Tile
+        tone="muted"
+        rows={2}
+        class="min-h-80 justify-end p-0! sm:col-span-2 lg:col-span-1"
+      >
+        <Image
+          src={profile}
+          alt="Shahad Mahmud, arms crossed, leaning against a red brick wall"
+          widths={[360, 540, 718]}
+          sizes="(min-width: 1024px) 280px, 100vw"
+          loading="eager"
+          class="absolute inset-0 size-full object-cover object-[60%_30%]"
+        />
+      </Tile>
+    </Bento>
+
+    <section aria-labelledby="career-title" class="flex flex-col gap-5">
+      <SectionHeading index="01" id="career-title">Career</SectionHeading>
+      <ol class="m-0 flex list-none flex-col gap-3 p-0 sm:gap-4">
+        {
+          journey.map(item => (
+            <li>
+              <Tile
+                tag="article"
+                pad="lg"
+                class="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-10"
+              >
+                <div class="flex flex-col gap-1.5">
+                  <span class="text-muted-foreground font-mono text-xs">
+                    {item.dates}
+                  </span>
+                  <h3 class="font-display m-0 text-2xl font-bold tracking-[-0.02em]">
+                    {item.org}
+                  </h3>
+                  <span>{item.role}</span>
+                  {item.previously && (
+                    <span class="text-muted-foreground text-sm">
+                      Previously {item.previously}
+                    </span>
+                  )}
+                </div>
+                <ul class="m-0 flex flex-col gap-2.5 p-0 text-[15px]">
+                  {item.highlights.map(line => (
+                    <li class="flex gap-3">
+                      <span
+                        aria-hidden="true"
+                        class="bg-signal mt-2 size-1.5 shrink-0 rounded-full"
+                      />
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              </Tile>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <section aria-labelledby="words-title" class="flex flex-col gap-5">
+      <SectionHeading index="02" id="words-title">Kind words</SectionHeading>
+      <Tile tag="article" tone="primary" pad="lg">
+        <figure class="m-0 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-10">
+          <figcaption class="flex flex-col gap-1.5">
+            <span
+              aria-hidden="true"
+              class="font-display text-signal text-6xl leading-none font-extrabold"
+              >“</span
+            >
+            <span class="font-display text-2xl font-bold tracking-[-0.02em]">
+              {testimonial.name}
+            </span>
+            <span class="opacity-75">{testimonial.title}</span>
+            <a
+              href={testimonial.url}
+              {...external}
+              class="group mt-2 inline-flex items-center gap-1.5 self-start text-sm font-medium underline-offset-4 hover:underline"
+            >
+              On LinkedIn <Arrow />
+            </a>
+          </figcaption>
+          <blockquote class="m-0 flex flex-col gap-4 text-[17px] leading-relaxed">
+            {testimonial.full.map(paragraph => <p class="m-0">{paragraph}</p>)}
+          </blockquote>
+        </figure>
+      </Tile>
+    </section>
+
+    <section aria-labelledby="research-title" class="flex flex-col gap-5">
+      <SectionHeading index="03" id="research-title">
+        Research &amp; education
+      </SectionHeading>
+      <Bento>
+        {
+          papers.map(paper => (
+            <Tile
+              href={paper.url}
+              {...external}
+              title={paper.title}
+              class="justify-between gap-7"
+            >
+              <span class="flex items-start justify-between gap-3">
+                <Pill>{paper.venue}</Pill>
+                <Arrow class="text-muted-foreground" />
+              </span>
+              <span class="flex flex-col gap-1">
+                <span class="font-display text-2xl font-bold tracking-[-0.02em]">
+                  {paper.short}
+                </span>
+                <span class="text-muted-foreground text-sm">
+                  {paper.result}
+                </span>
+              </span>
+            </Tile>
+          ))
+        }
+        <Tile span={2} class="justify-between gap-7">
+          <Eyebrow>Education · 2016–2021</Eyebrow>
+          <span class="flex flex-col gap-1">
+            <span class="font-display text-2xl font-bold tracking-[-0.02em]">
+              B.Sc. in Computer Science &amp; Engineering
+            </span>
+            <span class="text-muted-foreground text-sm">
+              Rajshahi University of Engineering &amp; Technology. Thesis on
+              deep learning for NLP; competitive programming on the side.
+            </span>
+          </span>
+        </Tile>
+      </Bento>
+    </section>
+
+    <section aria-labelledby="open-title" class="flex flex-col gap-5">
+      <SectionHeading index="04" id="open-title">Open to</SectionHeading>
+      <Bento>
+        {
+          openTo.map(item => (
+            <Tile class="gap-3">
+              <h3 class="font-display m-0 text-xl font-bold tracking-[-0.02em]">
+                {item.title}
+              </h3>
+              <p class="text-muted-foreground m-0 text-[15px]">{item.body}</p>
+            </Tile>
+          ))
+        }
+        <Tile tone="ink" class="justify-between gap-6">
+          <span class="font-display text-xl font-bold tracking-[-0.02em]">
+            Say hello.
+          </span>
+          <span class="flex flex-col gap-2">
+            <Button href="mailto:shahad9381@gmail.com" block>
+              Email me <Arrow />
+            </Button>
+            <Button href={linkedin} {...external} variant="outline" block>
+              LinkedIn
+            </Button>
+          </span>
+        </Tile>
+      </Bento>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

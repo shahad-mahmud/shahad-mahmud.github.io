@@ -1,0 +1,79 @@
+---
+/**
+ * The bento building block. Tone sets the fill:
+ *   surface  white/raised card (default)
+ *   ink      near-black, inverted text — weight
+ *   primary  deep navy — trust; use for one or two tiles per section
+ *   signal   orange — action; at most one per page
+ *   muted    recessed placeholder (photo slots, figures)
+ *
+ * Renders an <a> when `href` is set; links lift on hover and nudge any
+ * <Arrow /> inside (via the `group` class).
+ */
+import type { HTMLAttributes } from "astro/types";
+
+type Tone = "surface" | "ink" | "primary" | "signal" | "muted";
+
+type Props = {
+  tag?: "div" | "section" | "article" | "aside" | "nav" | "header" | "figure";
+  href?: string;
+  tone?: Tone;
+  /** Columns to span from the `sm` breakpoint up (bento has 2, then 4). */
+  span?: 1 | 2 | 3 | 4;
+  /** Rows to span from the `lg` breakpoint up. */
+  rows?: 1 | 2;
+  pad?: "sm" | "md" | "lg";
+} & Omit<HTMLAttributes<"div">, "href"> &
+  Pick<HTMLAttributes<"a">, "target" | "rel">;
+
+const {
+  tag = "div",
+  href,
+  tone = "surface",
+  span = 1,
+  rows = 1,
+  pad = "md",
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const Tag = href ? "a" : tag;
+
+const toneClass: Record<Tone, string> = {
+  surface: "bg-surface text-foreground border border-border",
+  ink: "bg-ink text-ink-foreground",
+  primary: "bg-primary text-primary-foreground",
+  signal: "bg-signal text-signal-foreground",
+  muted: "bg-muted text-muted-foreground",
+};
+
+const spanClass = {
+  1: "",
+  2: "sm:col-span-2",
+  3: "sm:col-span-2 lg:col-span-3",
+  4: "sm:col-span-2 lg:col-span-4",
+}[span];
+
+const padClass = {
+  sm: "p-4 sm:p-5",
+  md: "p-5 sm:p-6",
+  lg: "p-6 sm:p-9",
+}[pad];
+---
+
+<Tag
+  href={href}
+  class:list={[
+    "group rounded-tile-sm sm:rounded-tile relative flex flex-col overflow-hidden",
+    toneClass[tone],
+    spanClass,
+    { "lg:row-span-2": rows === 2 },
+    padClass,
+    href &&
+      "ease-out-expo transition-[translate,box-shadow] duration-400 hover:-translate-y-1 hover:shadow-lift active:scale-[0.98]",
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Tag>

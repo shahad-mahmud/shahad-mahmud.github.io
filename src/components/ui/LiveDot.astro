@@ -1,0 +1,14 @@
+---
+/** Pulsing green status dot, e.g. before "Open to …" or a current role. */
+type Props = { class?: string };
+
+const { class: className } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class:list={[
+    "bg-success animate-pulse-ring inline-block size-2 shrink-0 rounded-full",
+    className,
+  ]}
+></span>

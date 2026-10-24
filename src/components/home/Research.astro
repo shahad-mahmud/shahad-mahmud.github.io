@@ -1,0 +1,72 @@
+---
+/** "02 Research & open source": papers, PyPI package and HF contributions. */
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Pill from "@/components/ui/Pill.astro";
+import Arrow from "@/components/ui/Arrow.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Stat from "@/components/ui/Stat.astro";
+import { papers } from "@/data/profile";
+
+
+const external = { target: "_blank", rel: "noopener noreferrer" };
+---
+
+<section
+  id="research"
+  aria-labelledby="research-title"
+  class="flex scroll-mt-6 flex-col gap-5"
+>
+  <SectionHeading index="02" id="research-title">
+    Research &amp; open source
+  </SectionHeading>
+  <Bento>
+    {
+      papers.map(paper => (
+        <Tile href={paper.url} {...external} title={paper.title} class="justify-between gap-7">
+          <span class="flex items-start justify-between gap-3">
+            <Pill>{paper.venue}</Pill>
+            <Arrow class="text-muted-foreground" />
+          </span>
+          <span class="flex flex-col gap-1">
+            <span class="font-display text-2xl font-bold tracking-[-0.02em]">
+              {paper.short}
+            </span>
+            <span class="text-muted-foreground text-sm">{paper.blurb}</span>
+          </span>
+        </Tile>
+      ))
+    }
+    <Tile
+      tone="ink"
+      href="https://pypi.org/project/unicodeconverter/"
+      {...external}
+    >
+      <Stat
+        label="PyPI · unicodeconverter"
+        value="25k+"
+        countTo={25}
+        caption="downloads · Bijoy → Unicode"
+      />
+    </Tile>
+    <Tile
+      href="https://github.com/huggingface/transformers/pulls?q=author%3Ashahad-mahmud"
+      {...external}
+      class="justify-between gap-7"
+    >
+      <span class="flex items-start justify-between gap-3">
+        <Eyebrow>Contributor</Eyebrow>
+        <Arrow class="text-muted-foreground" />
+      </span>
+      <span class="flex flex-col gap-1">
+        <span class="font-display text-2xl font-bold tracking-[-0.02em]">
+          Hugging Face Transformers
+        </span>
+        <span class="text-muted-foreground text-sm">
+          Merged PRs, incl. a SentencePiece tokenizer fix.
+        </span>
+      </span>
+    </Tile>
+  </Bento>
+</section>

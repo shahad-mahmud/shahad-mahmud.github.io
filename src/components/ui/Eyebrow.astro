@@ -1,0 +1,23 @@
+---
+/**
+ * Small mono uppercase label at the top of a tile ("VLLM V2 PIPELINE").
+ * Colour is inherited at reduced emphasis so it works on every tile tone.
+ */
+import type { HTMLAttributes } from "astro/types";
+
+type Props = {
+  tag?: "span" | "h2" | "h3" | "p";
+} & HTMLAttributes<"span">;
+
+const { tag: Tag = "span", class: className, ...attrs } = Astro.props;
+---
+
+<Tag
+  class:list={[
+    "m-0 font-mono text-xs font-medium tracking-wide uppercase opacity-75",
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Tag>

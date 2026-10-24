@@ -3,7 +3,6 @@ import type { Page } from "astro";
 import type { CollectionEntry } from "astro:content";
 import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import LinkButton from "./LinkButton.astro";
 import { useTranslations } from "@/i18n";
 
 type Props = {
@@ -13,34 +12,56 @@ type Props = {
 const { page } = Astro.props;
 
 const t = useTranslations(Astro.currentLocale);
+
+const pill =
+  "inline-flex min-h-11 items-center gap-1.5 rounded-full border px-5 text-sm font-medium";
 ---
 
 {
   page.lastPage > 1 && (
     <nav
-      class="mt-auto mb-8 flex justify-center gap-4"
-      role="navigation"
+      class="wide-layout mt-auto mb-10 flex items-center justify-center gap-3"
       aria-label="Pagination Navigation"
     >
-      <LinkButton
-        disabled={!page.url.prev}
-        href={page.url.prev as string}
-        class:list={["select-none", { "opacity-50": !page.url.prev }]}
-        aria-label={t.a11y.goToPreviousPage}
-      >
-        <IconArrowLeft class="inline-block rtl:rotate-180" />
-        {t.pagination.prev}
-      </LinkButton>
-      {page.currentPage} / {page.lastPage}
-      <LinkButton
-        disabled={!page.url.next}
-        href={page.url.next as string}
-        class:list={["select-none", { "opacity-50": !page.url.next }]}
-        aria-label={t.a11y.goToNextPage}
-      >
-        {t.pagination.next}
-        <IconArrowRight class="inline-block rtl:rotate-180" />
-      </LinkButton>
+      {page.url.prev ? (
+        <a
+          href={page.url.prev}
+          class:list={[pill, "bg-surface border-border hover:border-foreground/40"]}
+          aria-label={t.a11y.goToPreviousPage}
+        >
+          <IconArrowLeft class="size-4 rtl:rotate-180" />
+          {t.pagination.prev}
+        </a>
+      ) : (
+        <span
+          class:list={[pill, "border-border text-muted-foreground opacity-50"]}
+          aria-disabled="true"
+        >
+          <IconArrowLeft class="size-4 rtl:rotate-180" />
+          {t.pagination.prev}
+        </span>
+      )}
+      <span class="text-muted-foreground font-mono text-xs">
+        {page.currentPage} / {page.lastPage}
+      </span>
+      {page.url.next ? (
+        <a
+          href={page.url.next}
+          class:list={[pill, "bg-ink text-ink-foreground border-ink"]}
+          aria-label={t.a11y.goToNextPage}
+        >
+          {t.pagination.next}
+          <IconArrowRight class="size-4 rtl:rotate-180" />
+        </a>
+      ) : (
+        <span
+          class:list={[pill, "border-border text-muted-foreground opacity-50"]}
+          aria-disabled="true"
+        >
+          {t.pagination.next}
+          <IconArrowRight class="size-4 rtl:rotate-180" />
+        </span>
+      )}
     </nav>
   )
 }

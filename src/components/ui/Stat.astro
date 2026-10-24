@@ -1,0 +1,54 @@
+---
+/**
+ * Big-number tile content: eyebrow on top, value + caption at the bottom.
+ * Place inside a <Tile>. Pass `countTo` to count up from 0 on load
+ * (e.g. value="−45%" countTo={45}); the final value is server-rendered, so
+ * it reads correctly without JavaScript or with reduced motion.
+ */
+import Eyebrow from "./Eyebrow.astro";
+
+type Props = {
+  label: string;
+  value: string;
+  caption?: string;
+  countTo?: number;
+};
+
+const { label, value, caption, countTo } = Astro.props;
+---
+
+<div class="flex h-full min-h-32 flex-col justify-between gap-5">
+  <Eyebrow>{label}</Eyebrow>
+  <div>
+    <div
+      class="font-display text-[2.75rem] leading-none font-extrabold tracking-[-0.05em] tabular-nums sm:text-[3.5rem]"
+      data-count-to={countTo}
+    >
+      {value}
+    </div>
+    {caption && <div class="mt-1.5 text-sm opacity-75">{caption}</div>}
+  </div>
+</div>
+
+<script>
+  // Counts each [data-count-to] from 0 to its target, keeping any prefix and
+  // suffix around the number ("−45%" → "−" + n + "%").
+  function countUp() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll<HTMLElement>("[data-count-to]").forEach(el => {
+      const target = Number(el.dataset.countTo);
+      const final = el.textContent?.trim() ?? "";
+      const [prefix, suffix] = final.split(String(target));
+      if (suffix === undefined) return;
+      const start = performance.now();
+      const step = (now: number) => {
+        const p = Math.min(1, (now - start) / 1400);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = `${prefix}${Math.round(target * eased)}${suffix}`;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    });
+  }
+  document.addEventListener("astro:page-load", countUp);
+</script>

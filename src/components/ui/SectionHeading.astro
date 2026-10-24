@@ -1,0 +1,31 @@
+---
+/**
+ * Numbered section title ("01 Selected work") with an optional right-hand
+ * slot (filters, "All posts →").
+ */
+type Props = { index?: string; id?: string; class?: string };
+
+const { index, id, class: className } = Astro.props;
+---
+
+<div
+  class:list={[
+    "flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3",
+    className,
+  ]}
+>
+  <h2
+    id={id}
+    class="font-display m-0 text-[1.75rem] leading-tight font-extrabold tracking-[-0.03em] sm:text-[2.125rem]"
+  >
+    {
+      index && (
+        <span class="text-muted-foreground me-3 align-middle font-mono text-xs font-medium tracking-normal">
+          {index}
+        </span>
+      )
+    }
+    <slot />
+  </h2>
+  <slot name="aside" />
+</div>

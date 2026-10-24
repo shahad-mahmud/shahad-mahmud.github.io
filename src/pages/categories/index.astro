@@ -26,7 +26,9 @@ const t = useTranslations(locale);
   <Breadcrumb />
 
   <Main pageTitle={t.pages.categoriesTitle} pageDesc={t.pages.categoriesDesc}>
-    <ul class="flex flex-wrap gap-6">
+    <ul
+      class="stagger m-0 grid list-none grid-cols-2 gap-3 p-0 sm:gap-4 lg:grid-cols-4"
+    >
       {
         categories.map(({ category, categoryName, count }) => (
           <Category {category} {categoryName} {count} />
