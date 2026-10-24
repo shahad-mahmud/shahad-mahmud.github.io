@@ -45,7 +45,7 @@ const t = useTranslations(locale);
 <Layout
   title={`${t.pages.categoryTitle}: ${categoryName} | ${config.site.title}`}
 >
-  <Header wide />
+  <Header />
 
   <Breadcrumb />
 
@@ -62,5 +62,5 @@ const t = useTranslations(locale);
 
   <Pagination {page} />
 
-  <Footer wide noMarginTop={page.lastPage > 1} />
+  <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

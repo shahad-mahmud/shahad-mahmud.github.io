@@ -34,7 +34,7 @@ const canonicalURL = new URL(canonicalPath, Astro.site).href;
   title={`${t.pages.blogsTitle} | ${config.site.title}`}
   canonicalURL={canonicalURL}
 >
-  <Header wide />
+  <Header />
 
   <Breadcrumb />
 
@@ -48,5 +48,5 @@ const canonicalURL = new URL(canonicalPath, Astro.site).href;
 
   <Pagination {page} />
 
-  <Footer wide noMarginTop={page.lastPage > 1} />
+  <Footer noMarginTop={page.lastPage > 1} />
 </Layout>

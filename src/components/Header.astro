@@ -8,13 +8,6 @@ import { stripBase, stripLocale } from "@/utils/withBase";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
 
-type Props = {
-  /** Match the wider bento container (home, posts) instead of app-layout. */
-  wide?: boolean;
-};
-
-const { wide = false } = Astro.props;
-
 const { features } = config;
 
 const locale = Astro.currentLocale ?? config.site.lang;
@@ -61,10 +54,7 @@ const navItems = [
 </a>
 
 <header
-  class:list={[
-    wide ? "wide-layout" : "app-layout",
-    "flex items-center justify-between gap-4 pt-5 pb-2 sm:pt-6",
-  ]}
+  class="wide-layout flex items-center justify-between gap-4 pt-5 pb-2 sm:pt-6"
 >
   <a
     href={getRelativeLocaleUrl(locale, "")}
