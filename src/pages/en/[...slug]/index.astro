@@ -18,6 +18,7 @@ import AdjacentPostNav from "./_components/AdjacentPostNav.astro";
 import Tile from "@/components/ui/Tile.astro";
 import Pill from "@/components/ui/Pill.astro";
 import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Button from "@/components/ui/Button.astro";
 import { slugifyCategory } from "@/utils/slugify";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import profile from "@/assets/images/shahad-profile.jpg";
@@ -222,25 +223,6 @@ const resolvedCanonicalURL = canonicalURL
             </Tile>
           )
         }
-        <Tile
-          pad="sm"
-          aria-label="About the author"
-          class="hidden flex-row items-center gap-3.5 lg:flex"
-        >
-          <Image
-            src={profile}
-            alt=""
-            width={96}
-            height={96}
-            class="size-12 shrink-0 rounded-full object-cover object-[60%_30%]"
-          />
-          <span class="flex flex-col">
-            <span class="font-semibold">Shahad Mahmud</span>
-            <span class="text-muted-foreground text-[13px]">
-              AI team lead at Delineate (YC W25)
-            </span>
-          </span>
-        </Tile>
       </aside>
 
       <Tile tag="div" class="animate-rise px-5 py-7 sm:px-10 sm:py-12">
@@ -271,6 +253,43 @@ const resolvedCanonicalURL = canonicalURL
         </div>
       </Tile>
     </div>
+
+    <Tile
+      tag="section"
+      aria-labelledby="author-title"
+      class="flex-col gap-5 sm:flex-row sm:items-center sm:gap-6"
+    >
+      <Image
+        src={profile}
+        alt=""
+        width={160}
+        height={160}
+        class="size-20 shrink-0 rounded-3xl object-cover object-[60%_30%]"
+      />
+      <div class="flex flex-1 flex-col gap-1.5">
+        <Eyebrow>Written by</Eyebrow>
+        <h2
+          id="author-title"
+          class="font-display m-0 text-2xl font-bold tracking-[-0.02em]"
+        >
+          Shahad Mahmud
+        </h2>
+        <p class="text-muted-foreground m-0 max-w-2xl text-[15px]">
+          Sr. AI Engineer &amp; Team Lead at Delineate (YC W25), leading a
+          10-person team building LLM and agentic systems for pharmaceutical
+          research. Bangla NLP researcher, published at EMNLP 2023 and NAACL
+          2025.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-2 sm:flex-col">
+        <Button href={getRelativeLocaleUrl(locale, "")} variant="ink">
+          About me
+        </Button>
+        <Button href="mailto:shahad9381@gmail.com" variant="outline">
+          Get in touch
+        </Button>
+      </div>
+    </Tile>
 
     <BackToTopButton />
 

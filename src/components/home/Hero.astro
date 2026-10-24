@@ -8,19 +8,9 @@ import Button from "@/components/ui/Button.astro";
 import Arrow from "@/components/ui/Arrow.astro";
 import LiveDot from "@/components/ui/LiveDot.astro";
 import Stat from "@/components/ui/Stat.astro";
-import Eyebrow from "@/components/ui/Eyebrow.astro";
 import config from "@/config";
 
 const locale = Astro.currentLocale ?? config.site.lang;
-
-// Rotating end of the headline. All phrases sit in one grid cell, so the
-// box is as tall as the longest one and nothing jumps when they swap.
-const phrases = [
-  "multi-agent systems.",
-  "document extraction.",
-  "evals that keep LLMs honest.",
-  "Bangla NLP.",
-];
 ---
 
 <Bento class="grid-cols-2">
@@ -32,33 +22,32 @@ const phrases = [
     aria-labelledby="hero-title"
     class="col-span-2 justify-between gap-8 lg:min-h-[28rem]"
   >
-    <span class="text-muted-foreground flex items-center gap-2.5 text-[13px]">
-      <LiveDot /> Sr. AI Engineer &amp; Team Lead · Delineate (YC W25)
-    </span>
+    <div class="flex items-center gap-3">
+      <Image
+        src={profile}
+        alt=""
+        width={96}
+        height={96}
+        class="size-12 shrink-0 rounded-2xl object-cover object-[60%_30%] lg:hidden"
+      />
+      <span class="text-muted-foreground flex items-center gap-2.5 text-[13px]">
+        <LiveDot class="max-lg:hidden" />
+        Sr. AI Engineer &amp; Team Lead · Delineate (YC W25)
+      </span>
+    </div>
     <div class="flex flex-col gap-4">
       <h1
         id="hero-title"
-        class="font-display m-0 text-[2.5rem] leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-[3.25rem]"
+        class="font-display m-0 text-[2.5rem] leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-[2.875rem]"
       >
         <span class="block">Hi, I'm Shahad.</span>
-        <span class="text-muted-foreground block">I build</span>
-        <span class="sr-only">{phrases.join(" ")}</span>
-        <span aria-hidden="true" class="grid">
-          {
-            phrases.map((phrase, i) => (
-              <span
-                class="rotate-phrase [grid-area:1/1]"
-                style={`animation-delay: ${i * 2.5}s`}
-              >
-                {phrase}
-              </span>
-            ))
-          }
-        </span>
+        <span class="text-muted-foreground">I lead an AI team building</span
+        >{" "}LLM systems pharma researchers can trust.
       </h1>
       <p class="text-muted-foreground m-0 max-w-md text-[17px]">
-        Production LLM and agentic systems for pharmaceutical research —
-        systems that have to be right, not just convincing.
+        Multi-agent pipelines, scientific document extraction and the evals
+        that keep them right, not just convincing. Bangla NLP researcher on
+        the side.
       </p>
     </div>
     <div class="flex flex-wrap gap-2.5">
@@ -66,7 +55,7 @@ const phrases = [
         Get in touch <Arrow />
       </Button>
       <Button variant="outline" href={getRelativeLocaleUrl(locale, "blogs")}>
-        Read the blog
+        Read my writing
       </Button>
     </div>
   </Tile>
@@ -94,79 +83,19 @@ const phrases = [
 
   <Tile tone="primary" pad="sm" class="col-span-1">
     <Stat
-      label="vLLM V2 pipeline"
-      value="−45%"
-      countTo={45}
-      caption="end-to-end latency"
+      label="Leading"
+      value="10"
+      countTo={10}
+      caption="AI engineers at Delineate"
     />
   </Tile>
 
   <Tile pad="sm" class="col-span-1">
-    <div class="flex h-full min-h-32 flex-col justify-between gap-5">
-      <span class="flex justify-between">
-        <Eyebrow>Local time</Eyebrow>
-        <Eyebrow class="max-sm:hidden">GMT+6</Eyebrow>
-      </span>
-      <div>
-        <div
-          data-dhaka-clock
-          class="font-display text-[2.75rem] leading-none font-extrabold tracking-[-0.05em] tabular-nums sm:text-[3.25rem]"
-        >
-          --:--
-        </div>
-        <div class="text-muted-foreground mt-1.5 text-sm">in Dhaka</div>
-      </div>
-    </div>
+    <Stat
+      label="Published at"
+      value="2"
+      countTo={2}
+      caption="EMNLP '23 · NAACL '25"
+    />
   </Tile>
 </Bento>
-
-<style>
-  .rotate-phrase {
-    opacity: 0;
-    animation: phrase 10s var(--ease-in-out-expo) infinite;
-  }
-  .rotate-phrase:first-child {
-    opacity: 1;
-  }
-  @keyframes phrase {
-    0% {
-      opacity: 0;
-      transform: translateY(0.35em);
-    }
-    5%,
-    22% {
-      opacity: 1;
-      transform: none;
-    }
-    27%,
-    100% {
-      opacity: 0;
-      transform: translateY(-0.35em);
-    }
-  }
-  /* Reduced motion: motion.css stops the animation; keep the first phrase. */
-  @media (prefers-reduced-motion: reduce) {
-    .rotate-phrase:not(:first-child) {
-      visibility: hidden;
-    }
-  }
-</style>
-
-<script>
-  function startClock() {
-    const el = document.querySelector<HTMLElement>("[data-dhaka-clock]");
-    if (!el) return;
-    const fmt = new Intl.DateTimeFormat("en-GB", {
-      hour: "2-digit",
-      minute: "2-digit",
-      timeZone: "Asia/Dhaka",
-    });
-    const tick = () => (el.textContent = fmt.format(new Date()));
-    tick();
-    const id = window.setInterval(tick, 15_000);
-    document.addEventListener("astro:before-swap", () => clearInterval(id), {
-      once: true,
-    });
-  }
-  document.addEventListener("astro:page-load", startClock);
-</script>
