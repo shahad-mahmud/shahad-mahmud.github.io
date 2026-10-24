@@ -1,0 +1,49 @@
+---
+/**
+ * Pill button. Renders an <a> with `href`, otherwise a <button>.
+ *   signal   the one primary call to action (orange, ink text)
+ *   ink      strong secondary
+ *   outline  quiet secondary; inherits text colour, so it works on ink tiles
+ */
+import type { HTMLAttributes } from "astro/types";
+
+type Props = {
+  href?: string;
+  variant?: "signal" | "ink" | "outline";
+  size?: "md" | "lg";
+  block?: boolean;
+} & Omit<HTMLAttributes<"button">, "type"> &
+  Pick<HTMLAttributes<"a">, "target" | "rel">;
+
+const {
+  href,
+  variant = "signal",
+  size = "md",
+  block = false,
+  class: className,
+  ...attrs
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+
+const variantClass = {
+  signal: "bg-signal text-signal-foreground font-semibold hover:brightness-105",
+  ink: "bg-ink text-ink-foreground font-medium",
+  outline: "border border-current/25 font-medium hover:border-current/60",
+}[variant];
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : "button"}
+  class:list={[
+    "group inline-flex items-center justify-center gap-2 rounded-full px-5 transition-[filter,border-color] duration-200",
+    size === "lg" ? "min-h-13 text-base" : "min-h-11 text-[15px]",
+    { "w-full": block },
+    variantClass,
+    className,
+  ]}
+  {...attrs}
+>
+  <slot />
+</Tag>

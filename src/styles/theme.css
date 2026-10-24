@@ -2,46 +2,96 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-ink-muted: var(--ink-muted);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-muted: var(--primary-muted);
+  --color-signal: var(--signal);
+  --color-signal-foreground: var(--signal-foreground);
+  --color-success: var(--success);
 
-  /* Machine voice (chrome: wordmark, nav, headings, labels, code) — mono. */
-  --font-app: var(--font-google-sans-code);
-  /* Human voice — post body prose only (see typography.css `.app-prose`). */
+  /* Display: headings, big numbers. */
+  --font-display: var(--font-bricolage-grotesque);
+  /* Body and UI text. */
+  --font-sans: var(--font-inter);
+  /* Labels, eyebrows, dates, code. */
+  --font-mono: var(--font-jetbrains-mono);
+  /* Legacy alias: older components use `font-app` for mono chrome. */
+  --font-app: var(--font-jetbrains-mono);
+  /* Post body prose only (see typography.css `.app-prose`). */
   --font-serif: var(--font-newsreader);
-  /* Signature: hero Bangla name line only. */
+  /* Bangla signature lines only. */
   --font-bengali: var(--font-noto-serif-bengali);
 }
 
+@theme {
+  --radius-tile: 1.75rem;
+  --radius-tile-sm: 1.375rem;
+  --shadow-lift: 0 24px 48px -28px rgb(10 10 30 / 0.45);
+  --ease-out-expo: cubic-bezier(0.2, 0.75, 0.2, 1);
+  --ease-in-out-expo: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
 /*
- * "Tokenized" palette — warm paper/ink with a single burnt-amber accent,
- * kept in the lineage of the OG image accent (#ff6b01, src/utils/ogTemplate.ts)
- * so the site and its social cards read as one brand. Contrast verified
- * WCAG AA (accent-as-text passes ≥4.5:1 in both themes).
+ * "Ink & Signal" palette, used roughly 60 / 30 / 10:
+ *   ground  (background, surface)  — space, calm
+ *   ink     (near-black tiles)     — authority, weight
+ *   primary (deep navy)            — competence, trust
+ *   signal  (orange)               — action; fills only, < 10% of a page
+ *
+ * Contrast (WCAG AA): signal is never used as text on the ground — it is a
+ * fill with `signal-foreground` (ink) text, 6.6:1. `accent` is the text-safe
+ * link/hover colour: navy in light (13:1), light cobalt in dark (9:1).
+ * Signal keeps the OG image orange lineage (#ff6b01, src/utils/ogTemplate.ts).
  */
 
 /* Light theme values */
 :root,
 [data-theme="light"] {
-  --background: #faf8f3;
-  --foreground: #1b1a17;
-  --accent: #c2440a;
+  --background: #f2f1ec;
+  --surface: #ffffff;
+  --foreground: #0e1116;
+  --muted: #eae9e3;
+  --muted-foreground: #585b63;
+  --border: #e1e0d9;
+  --ink: #0e1116;
+  --ink-foreground: #ffffff;
+  --ink-muted: #9ea1aa;
+  --primary: #1a2b6b;
+  --primary-foreground: #ffffff;
+  --primary-muted: #c9d1f0;
+  --signal: #ff6b2c;
+  --signal-foreground: #0e1116;
+  --accent: #1a2b6b;
   --accent-foreground: #ffffff;
-  --muted: #ece7de;
-  --muted-foreground: #6a655c;
-  --border: #e4ded3;
+  --success: #1f9d55;
 }
 
 /* Dark theme values */
 [data-theme="dark"] {
-  --background: #1a1b22;
-  --foreground: #eceae3;
-  --accent: #ff7a2e;
-  --accent-foreground: #1a1b22;
-  --muted: #2a2c38;
-  --muted-foreground: #a7a395;
-  --border: #33353f;
+  --background: #0b0d12;
+  --surface: #151821;
+  --foreground: #f2f2ef;
+  --muted: #20242e;
+  --muted-foreground: #a3a7b3;
+  --border: #272b36;
+  --ink: #f2f2ef;
+  --ink-foreground: #0e1116;
+  --ink-muted: #5b5f6b;
+  --primary: #1f3280;
+  --primary-foreground: #ffffff;
+  --primary-muted: #c9d1f0;
+  --signal: #ff6b2c;
+  --signal-foreground: #0e1116;
+  --accent: #9db1ff;
+  --accent-foreground: #0e1116;
+  --success: #3ccf7f;
 }

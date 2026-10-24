@@ -1,0 +1,18 @@
+---
+/**
+ * Diagonal arrow that nudges up-right when its parent `.group` (a linked
+ * <Tile> or <Button>) is hovered. Decorative.
+ */
+type Props = { circle?: boolean; class?: string };
+
+const { circle = false, class: className } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class:list={[
+    "inline-flex shrink-0 items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5",
+    { "bg-muted text-foreground size-10 rounded-full": circle },
+    className,
+  ]}>↗</span
+>

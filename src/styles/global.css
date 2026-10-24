@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "./theme.css";
 @import "./typography.css";
+@import "./motion.css";
 @import "rehype-callouts/theme/obsidian";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
@@ -27,6 +28,15 @@
 
 @utility app-layout {
   @apply max-w-app mx-auto w-full px-4;
+}
+
+/* Bento pages (home, post) run wider than the reading column. */
+@utility max-w-wide {
+  max-width: 74rem;
+}
+
+@utility wide-layout {
+  @apply max-w-wide mx-auto w-full px-4 sm:px-6;
 }
 
 @utility active-nav {
