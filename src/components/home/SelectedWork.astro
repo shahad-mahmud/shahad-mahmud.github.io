@@ -1,6 +1,6 @@
 ---
 /**
- * "01 Selected work": four project tiles. A 2×2 bento on tablet/desktop; on
+ * "01 Selected work": six project tiles. A 2-column bento on tablet/desktop; on
  * phones a horizontal snap carousel with a position counter.
  */
 import SectionHeading from "@/components/ui/SectionHeading.astro";
@@ -19,7 +19,7 @@ const tileClass =
   <SectionHeading index="01" id="work-title">
     Selected work
     <span slot="aside" class="text-muted-foreground text-sm">
-      <span class="sm:hidden" data-work-pos>1 / 4</span>
+      <span class="sm:hidden" data-work-pos>1 / 6</span>
       <span class="max-sm:hidden">What I've shipped at Delineate</span>
     </span>
   </SectionHeading>
@@ -28,6 +28,80 @@ const tileClass =
     data-work-track
     class="stagger -mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0"
   >
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Trust · 2026</Eyebrow>
+      <div
+        role="img"
+        aria-label="An extracted value linked to its page, table and position in the source PDF"
+        class="flex flex-col gap-2 font-mono text-xs"
+      >
+        <div class="bg-muted flex items-center justify-between gap-3 rounded-xl p-3">
+          <span><span class="text-muted-foreground">CL/F</span> 0.29 L/h</span>
+          <span class="bg-signal text-signal-foreground rounded-full px-2 py-0.5"
+            >p. 42</span
+          >
+        </div>
+        <div class="text-muted-foreground flex flex-wrap gap-x-3 gap-y-1 px-1">
+          <span>↳ Table 3 · row 4</span>
+          <span>bbox 112,388,204,402</span>
+          <span>sha256 9f1c…</span>
+        </div>
+      </div>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Every extracted value cites its source
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          A citation audit trail for clinical documents: each number traces to
+          its page, table and position in the PDF. Cited cells went from 20% to
+          49% on covariate extraction.
+        </p>
+      </div>
+    </Tile>
+
+    <Tile tag="article" class={tileClass}>
+      <Eyebrow>Agents · 2026</Eyebrow>
+      <ol
+        aria-label="Example modelling plan"
+        class="m-0 flex list-none flex-col gap-1.5 p-0 font-mono text-xs"
+      >
+        {
+          [
+            { step: "read the paper", done: true },
+            { step: "extract the model spec", done: true },
+            { step: "build it in nlmixr2", done: true },
+            { step: "replicate the figures", done: false },
+          ].map((item, i) => (
+            <li class="bg-muted flex items-center gap-3 rounded-lg px-3 py-2">
+              <span class="text-muted-foreground">0{i + 1}</span>
+              <span class="flex-1">{item.step}</span>
+              {item.done ? (
+                <span class="text-success" aria-label="done">✓</span>
+              ) : (
+                <span
+                  class="bg-signal animate-pulse-ring size-2 rounded-full"
+                  aria-label="in progress"
+                />
+              )}
+            </li>
+          ))
+        }
+      </ol>
+      <div class="mt-auto flex flex-col gap-1.5">
+        <h3
+          class="font-display m-0 text-xl font-bold tracking-[-0.02em] sm:text-[22px]"
+        >
+          Sidekick, an agent for pharma modelling
+        </h3>
+        <p class="text-muted-foreground m-0 text-[15px]">
+          Plans and runs PopPK replication and model-based meta-analysis in R
+          and Python notebooks, with a scientist signing off at each checkpoint.
+        </p>
+      </div>
+    </Tile>
+
     <Tile tag="article" class={tileClass}>
       <Eyebrow>Agents · 2025</Eyebrow>
       <svg
@@ -185,7 +259,7 @@ const tileClass =
 </section>
 
 <script>
-  // Phone carousel: keep the "n / 4" counter in sync with the scroll position.
+  // Phone carousel: keep the "n / total" counter in sync with the scroll position.
   function trackWork() {
     const track = document.querySelector<HTMLElement>("[data-work-track]");
     const pos = document.querySelector<HTMLElement>("[data-work-pos]");
