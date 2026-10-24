@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" role="img" aria-labelledby="t d">
+<title id="t">Final system architecture</title>
+<desc id="d">Frontend creates a task, the backend dispatches it to the Python AI service. The AI service streams the full message so far into RabbitMQ, where stateless backend workers compete for it and write to Postgres with a conditional UPSERT that only accepts newer chunks. Supabase Realtime streams row updates back to the frontend.</desc>
+<defs>
+  <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#0e1116"/></marker>
+  <marker id="as" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#ff6b2c"/></marker>
+  <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="#e1e0d9"/></pattern>
+</defs>
+<rect width="1200" height="640" fill="#f2f1ec"/>
+<rect width="1200" height="640" fill="url(#dots)"/>
+<text x="60" y="58" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="500" fill="#585b63" text-anchor="start" letter-spacing="1.4">FINAL ARCHITECTURE</text>
+<text x="60" y="92" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="26" font-weight="800" fill="#0e1116" text-anchor="start" >Streaming AI output, written safely by stateless workers</text>
+<rect x="60" y="140" width="240" height="110" rx="18" fill="#ffffff" stroke="#e1e0d9" stroke-width="1.5"/>
+<text x="82" y="170" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#585b63" text-anchor="start" letter-spacing="1.2">TYPESCRIPT</text>
+<text x="82" y="198" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#0e1116" text-anchor="start" >Frontend</text>
+<text x="82" y="222" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#585b63" text-anchor="start" >chat-like UI</text>
+<rect x="480" y="140" width="240" height="110" rx="18" fill="#ffffff" stroke="#e1e0d9" stroke-width="1.5"/>
+<text x="502" y="170" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#585b63" text-anchor="start" letter-spacing="1.2">TYPESCRIPT</text>
+<text x="502" y="198" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#0e1116" text-anchor="start" >Backend</text>
+<text x="502" y="222" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#585b63" text-anchor="start" >validate, pre-process</text>
+<rect x="900" y="140" width="240" height="110" rx="18" fill="#1a2b6b" stroke="#1a2b6b" stroke-width="1.5"/>
+<text x="922" y="170" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#c9d1f0" text-anchor="start" letter-spacing="1.2">PYTHON</text>
+<text x="922" y="198" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="start" >AI service</text>
+<text x="922" y="222" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#c9d1f0" text-anchor="start" >Celery workers</text>
+<path d="M300 195 L472 195" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="340" cy="172" r="12" fill="#0e1116"/>
+<text x="340" y="177" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >1</text>
+<text x="358" y="177" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="start" >create task</text>
+<path d="M720 195 L892 195" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="760" cy="172" r="12" fill="#0e1116"/>
+<text x="760" y="177" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >2</text>
+<text x="778" y="177" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="start" >dispatch</text>
+<path d="M1020 250 L1020 402" fill="none" stroke="#ff6b2c" stroke-width="2" marker-end="url(#as)"/>
+<circle cx="1040" cy="320" r="12" fill="#0e1116"/>
+<text x="1040" y="325" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >3</text>
+<text x="1058" y="325" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="start" >full message so far</text>
+<rect x="900" y="410" width="240" height="110" rx="18" fill="#ffffff" stroke="#e1e0d9" stroke-width="1.5"/>
+<text x="922" y="440" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#585b63" text-anchor="start" letter-spacing="1.2">QUEUE</text>
+<text x="922" y="468" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#0e1116" text-anchor="start" >RabbitMQ</text>
+<text x="922" y="492" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#585b63" text-anchor="start" >competing consumers</text>
+<rect x="620" y="400" width="200" height="38" rx="19" fill="#eae9e3" stroke="#e1e0d9" stroke-width="1"/>
+<text x="640" y="425" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#0e1116" text-anchor="start" >worker 1</text>
+<text x="800" y="425" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" fill="#585b63" text-anchor="end" >stateless</text>
+<rect x="620" y="446" width="200" height="38" rx="19" fill="#eae9e3" stroke="#e1e0d9" stroke-width="1"/>
+<text x="640" y="471" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#0e1116" text-anchor="start" >worker 2</text>
+<text x="800" y="471" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" fill="#585b63" text-anchor="end" >stateless</text>
+<rect x="620" y="492" width="200" height="38" rx="19" fill="#eae9e3" stroke="#e1e0d9" stroke-width="1"/>
+<text x="640" y="517" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="500" fill="#0e1116" text-anchor="start" >worker 3</text>
+<text x="800" y="517" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="400" fill="#585b63" text-anchor="end" >stateless</text>
+<path d="M900 465 C 860 465, 860 419, 828 419" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<path d="M900 465 C 860 465, 860 465, 828 465" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<path d="M900 465 C 860 465, 860 511, 828 511" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<rect x="300" y="400" width="260" height="130" rx="18" fill="#0e1116" stroke="#0e1116" stroke-width="1.5"/>
+<text x="322" y="430" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#a3a7b3" text-anchor="start" letter-spacing="1.2">POSTGRES</text>
+<text x="322" y="458" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#ffffff" text-anchor="start" >Conditional UPSERT</text>
+<text x="322" y="488" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="400" fill="#a3a7b3" text-anchor="start" >ON CONFLICT (task_id)</text>
+<text x="322" y="510" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#ff6b2c" text-anchor="start" >WHERE new.order &gt; old.order</text>
+<path d="M620 419 C 590 419, 590 465, 568 465" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<path d="M620 465 C 590 465, 590 465, 568 465" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<path d="M620 511 C 590 511, 590 465, 568 465" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="590" cy="380" r="12" fill="#0e1116"/>
+<text x="590" y="385" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >4</text>
+<text x="572" y="385" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="end" >write if newer</text>
+<rect x="60" y="410" width="180" height="110" rx="18" fill="#ffffff" stroke="#e1e0d9" stroke-width="1.5"/>
+<text x="82" y="440" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" font-weight="500" fill="#585b63" text-anchor="start" letter-spacing="1.2">SUPABASE</text>
+<text x="82" y="468" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="21" font-weight="700" fill="#0e1116" text-anchor="start" >Realtime</text>
+<text x="82" y="492" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="400" fill="#585b63" text-anchor="start" >UPDATE events</text>
+<path d="M300 465 L248 465" fill="none" stroke="#0e1116" stroke-width="2" marker-end="url(#a)"/>
+<circle cx="262" cy="556" r="12" fill="#0e1116"/>
+<text x="262" y="561" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >5</text>
+<text x="280" y="561" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="start" >row changed</text>
+<path d="M150 410 L150 258" fill="none" stroke="#ff6b2c" stroke-width="2" marker-end="url(#as)"/>
+<circle cx="170" cy="330" r="12" fill="#0e1116"/>
+<text x="170" y="335" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" >6</text>
+<text x="188" y="335" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" font-weight="500" fill="#585b63" text-anchor="start" >live stream to user</text>
+<text x="60" y="600" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="15" font-weight="400" fill="#585b63" text-anchor="start" >Stale chunks are discarded by the database itself, so worker order never matters.</text>
+</svg>
