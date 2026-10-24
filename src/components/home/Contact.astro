@@ -1,0 +1,77 @@
+---
+/** "04 Journey" timeline tile beside the closing contact call to action. */
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Button from "@/components/ui/Button.astro";
+import Arrow from "@/components/ui/Arrow.astro";
+
+const journey = [
+  { org: "Delineate (YC W25)", role: "Sr. AI Engineer & Team Lead", when: "2024 →" },
+  { org: "Giga Tech Limited", role: "ML Engineer", when: "2022–24" },
+  { org: "REVE Systems", role: "Software Engineer", when: "2021–22" },
+];
+---
+
+<Bento>
+  <Tile tag="section" span={2} aria-labelledby="journey-title" class="gap-1">
+    <Eyebrow tag="h2" id="journey-title" class="mb-2">04 · Journey</Eyebrow>
+    <ol class="m-0 list-none p-0">
+      {
+        journey.map(item => (
+          <li class="border-border flex justify-between gap-4 border-b py-3 last:border-b-0">
+            <span>
+              <span class="font-semibold">{item.org}</span>
+              <span class="text-muted-foreground max-sm:block max-sm:text-sm">
+                <span class="max-sm:hidden"> · </span>
+                {item.role}
+              </span>
+            </span>
+            <span class="text-muted-foreground font-mono text-xs whitespace-nowrap">
+              {item.when}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </Tile>
+
+  <Tile
+    tag="section"
+    tone="ink"
+    span={2}
+    pad="lg"
+    aria-labelledby="contact-title"
+    class="justify-between gap-7"
+  >
+    <span aria-hidden="true" class="dot-grid absolute inset-0 opacity-10"
+    ></span>
+    <h2
+      id="contact-title"
+      class="font-display relative m-0 text-[2rem] leading-[1.05] font-extrabold tracking-[-0.035em] sm:text-[2.5rem]"
+    >
+      Building something that has to be right? Let's talk.
+    </h2>
+    <div class="relative flex flex-wrap gap-2.5">
+      <Button href="mailto:shahad9381@gmail.com" class="max-sm:w-full">
+        Email me <Arrow />
+      </Button>
+      <Button
+        variant="outline"
+        href="https://github.com/shahad-mahmud"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        GitHub
+      </Button>
+      <Button
+        variant="outline"
+        href="https://www.linkedin.com/in/shahad-mahmud/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        LinkedIn
+      </Button>
+    </div>
+  </Tile>
+</Bento>

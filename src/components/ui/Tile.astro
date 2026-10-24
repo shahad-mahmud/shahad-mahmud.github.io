@@ -23,7 +23,8 @@ type Props = {
   /** Rows to span from the `lg` breakpoint up. */
   rows?: 1 | 2;
   pad?: "sm" | "md" | "lg";
-} & Omit<HTMLAttributes<"div">, "href">;
+} & Omit<HTMLAttributes<"div">, "href"> &
+  Pick<HTMLAttributes<"a">, "target" | "rel">;
 
 const {
   tag = "div",
