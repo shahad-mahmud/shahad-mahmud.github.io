@@ -2,7 +2,10 @@
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import LinkButton from "@/components/LinkButton.astro";
+import Bento from "@/components/ui/Bento.astro";
+import Tile from "@/components/ui/Tile.astro";
+import Button from "@/components/ui/Button.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { useTranslations } from "@/i18n";
 import config from "@/config";
@@ -12,32 +15,53 @@ const t = useTranslations(locale);
 ---
 
 <Layout title={`${t.notFound.title} | ${config.site.title}`}>
-  <Header />
+  <Header wide />
 
   <main
     id="main-content"
-    class="app-layout flex flex-1 items-center justify-center"
+    class="wide-layout flex flex-1 flex-col justify-center py-10"
   >
-    <div class="mb-14 flex flex-col items-center justify-center">
-      <h1 class="text-accent text-9xl font-bold">404</h1>
-      <span aria-hidden="true"> ¯\_(ツ)_/¯ </span>
-      <p class="mt-4 text-2xl sm:text-3xl">{t.notFound.message}</p>
-      <div class="flex gap-4">
-        <LinkButton
-          href={getRelativeLocaleUrl(locale, "")}
-          class="my-6 text-lg underline decoration-dashed underline-offset-8"
+    <Bento>
+      <Tile
+        tag="section"
+        tone="ink"
+        span={3}
+        pad="lg"
+        aria-labelledby="not-found-title"
+        class="min-h-80 justify-between gap-10"
+      >
+        <span aria-hidden="true" class="dot-grid absolute inset-0 opacity-10"
+        ></span>
+        <Eyebrow class="relative">Error 404</Eyebrow>
+        <div class="relative flex flex-col gap-4">
+          <h1
+            id="not-found-title"
+            class="font-display m-0 text-[2.75rem] leading-none font-extrabold tracking-[-0.04em] sm:text-7xl"
+          >
+            {t.notFound.message}
+          </h1>
+          <div class="flex flex-wrap gap-2.5">
+            <Button href={getRelativeLocaleUrl(locale, "")}>
+              {t.notFound.goHome}
+            </Button>
+            <Button variant="outline" href={getRelativeLocaleUrl(locale, "blogs")}>
+              Read the blog
+            </Button>
+          </div>
+        </div>
+      </Tile>
+      <Tile
+        tone="primary"
+        class="items-center justify-center max-sm:hidden"
+        aria-hidden="true"
+      >
+        <span
+          class="font-display text-8xl leading-none font-extrabold tracking-[-0.05em]"
+          >404</span
         >
-          {t.notFound.goHome}
-        </LinkButton>
-        <LinkButton
-          href={getRelativeLocaleUrl(locale, "blogs")}
-          class="my-6 text-lg underline decoration-dashed underline-offset-8"
-        >
-          Read Blogs
-        </LinkButton>
-      </div>
-    </div>
+      </Tile>
+    </Bento>
   </main>
 
-  <Footer />
+  <Footer wide />
 </Layout>

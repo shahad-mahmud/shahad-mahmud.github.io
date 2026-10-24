@@ -38,7 +38,7 @@ const t = useTranslations(locale);
 ---
 
 <Layout title={`${t.pages.tagTitle}: ${tagName} | ${config.site.title}`}>
-  <Header />
+  <Header wide />
 
   <Breadcrumb />
 
@@ -46,12 +46,14 @@ const t = useTranslations(locale);
     pageTitle={`${t.pages.tagTitle}: ${tagName}`}
     pageDesc={`${t.pages.tagDesc} "${tagName}".`}
   >
-    <ul>
+    <ul
+      class="stagger m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
+    >
       {page.data.map(data => <Card {...data} />)}
     </ul>
   </Main>
 
   <Pagination {page} />
 
-  <Footer noMarginTop={page.lastPage > 1} />
+  <Footer wide noMarginTop={page.lastPage > 1} />
 </Layout>

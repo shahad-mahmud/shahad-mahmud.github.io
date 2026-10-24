@@ -49,22 +49,22 @@ if (
 }
 ---
 
-<nav class="app-layout mt-8 mb-1" aria-label="breadcrumb">
+<nav class="wide-layout mt-6 mb-3 sm:mt-10" aria-label="breadcrumb">
   <ul
-    class="font-light [&>li]:inline [&>li:not(:last-child)>a]:hover:opacity-100"
+    class="text-muted-foreground font-mono text-xs [&>li]:inline [&>li:not(:last-child)>a]:hover:text-foreground"
   >
     <li>
-      <a href={getRelativeLocaleUrl(locale, "")} class="opacity-80">
+      <a href={getRelativeLocaleUrl(locale, "")} class="transition-colors">
         {t.nav.home}
       </a>
-      <span aria-hidden="true" class="opacity-80">&raquo;</span>
+      <span aria-hidden="true" class="mx-1.5 opacity-60">/</span>
     </li>
     {
       breadcrumbList.map((breadcrumb, index) =>
         index + 1 === breadcrumbList.length ? (
           <li>
             <span
-              class:list={["capitalize opacity-75", { lowercase: index > 0 }]}
+              class:list={["text-foreground capitalize", { lowercase: index > 0 }]}
               aria-current="page"
             >
               {/* make the last part lowercase in Home > Tags > some-tag */}
@@ -75,12 +75,12 @@ if (
           <li>
             <a
               href={getRelativeLocaleUrl(locale, breadcrumb)}
-              class="capitalize opacity-70"
+              class="capitalize transition-colors"
             >
               {navLabels[breadcrumb] ?? decodeSegment(breadcrumb)}
             </a>
-            <span aria-hidden="true" class="opacity-70">
-              &raquo;
+            <span aria-hidden="true" class="mx-1.5 opacity-60">
+              /
             </span>
           </li>
         )
