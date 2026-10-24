@@ -8,6 +8,8 @@ import Button from "@/components/ui/Button.astro";
 import Arrow from "@/components/ui/Arrow.astro";
 import LiveDot from "@/components/ui/LiveDot.astro";
 import Stat from "@/components/ui/Stat.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import { testimonial } from "@/data/profile";
 import config from "@/config";
 
 const locale = Astro.currentLocale ?? config.site.lang;
@@ -41,12 +43,10 @@ const locale = Astro.currentLocale ?? config.site.lang;
         class="font-display m-0 text-[2.5rem] leading-[1.04] font-extrabold tracking-[-0.04em] sm:text-[2.875rem]"
       >
         <span class="block">Hi, I'm Shahad.</span>
-        <span class="text-muted-foreground">I lead an AI team building</span
-        >{" "}LLM systems pharma researchers can trust.
+        <span class="text-muted-foreground">I build AI pharma can trust.</span>
       </h1>
       <p class="text-muted-foreground m-0 max-w-md text-[17px]">
-        Multi-agent pipelines, scientific document extraction and the evals
-        that keep them right, not just convincing. Bangla NLP researcher on
+        Agents, document extraction and the evals behind them. Bangla NLP on
         the side.
       </p>
     </div>
@@ -81,7 +81,7 @@ const locale = Astro.currentLocale ?? config.site.lang;
     </span>
   </Tile>
 
-  <Tile tone="primary" pad="sm" class="col-span-1">
+  <Tile tone="primary" pad="sm" class="col-span-2 sm:col-span-1">
     <Stat
       label="Leading"
       value="10"
@@ -90,12 +90,27 @@ const locale = Astro.currentLocale ?? config.site.lang;
     />
   </Tile>
 
-  <Tile pad="sm" class="col-span-1">
-    <Stat
-      label="Published at"
-      value="2"
-      countTo={2}
-      caption="EMNLP '23 · NAACL '25"
-    />
+  <Tile tag="figure" pad="sm" class="col-span-2 m-0 justify-between gap-5 sm:col-span-1">
+    <Eyebrow>What colleagues say</Eyebrow>
+    <blockquote
+      class="font-display m-0 text-xl leading-[1.2] font-bold tracking-[-0.02em]"
+    >
+      <span aria-hidden="true" class="text-signal">“</span>{
+        testimonial.pull
+      }<span aria-hidden="true" class="text-signal">”</span>
+    </blockquote>
+    <figcaption class="flex items-end justify-between gap-3 text-[13px]">
+      <span>
+        <span class="block font-semibold">{testimonial.name}</span>
+        <span class="text-muted-foreground">{testimonial.title}</span>
+      </span>
+      <a
+        href={getRelativeLocaleUrl(locale, "about")}
+        aria-label="Read the full recommendation"
+        class="group"
+      >
+        <Arrow circle />
+      </a>
+    </figcaption>
   </Tile>
 </Bento>
