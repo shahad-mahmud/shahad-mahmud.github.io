@@ -48,18 +48,16 @@
 }
 
 /*
- * Signature: the token-chip. A small, bounded, mono badge with a leading
- * accent tick — echoes a tokenizer segmenting text. Used for publication
- * badges and post-list category chips (see Card.astro / index.astro).
- * This is the one bold/structural element; everything else stays quiet.
+ * token-chip: small mono pill for tags and post-list categories (see
+ * Card.astro / Tag.astro). Matches the bento <Pill> component.
  */
 @layer components {
   .token-chip {
-    @apply border-accent/70 bg-muted/60 text-muted-foreground font-app inline-flex items-center gap-1 rounded-sm border-s-2 px-2 py-0.5 text-xs leading-5 font-medium tracking-wide whitespace-nowrap transition-colors duration-150;
+    @apply bg-muted text-foreground inline-flex items-center gap-1 rounded-full px-3 py-1 font-mono text-xs leading-5 whitespace-nowrap transition-colors duration-150;
   }
 
   a.token-chip {
-    @apply hover:border-accent hover:bg-muted hover:text-foreground;
+    @apply hover:bg-ink hover:text-ink-foreground;
   }
 }
 

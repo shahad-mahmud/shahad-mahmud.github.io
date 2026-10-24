@@ -1,7 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import Tile from "@/components/ui/Tile.astro";
+import Eyebrow from "@/components/ui/Eyebrow.astro";
+import Arrow from "@/components/ui/Arrow.astro";
 import { buildPostUrl } from "@/utils/postUrl";
 import { useTranslations } from "@/i18n";
 
@@ -11,36 +12,45 @@ type Props = {
 };
 
 const { prevPost, nextPost } = Astro.props;
+
 const t = useTranslations(Astro.currentLocale);
+
+// prevPost is the newer post (posts are sorted newest first).
+const items = [
+  prevPost && { label: t.post.previousPost, post: prevPost },
+  nextPost && { label: t.post.nextPost, post: nextPost },
+].filter(item => item !== null);
 ---
 
-<div class="my-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-  {
-    prevPost && (
-      <a
-        href={buildPostUrl({ ...prevPost.data, slug: prevPost.id })}
-        class="flex w-full gap-1 hover:opacity-75"
+{
+  items.length > 0 && (
+    <section
+      aria-labelledby="keep-reading"
+      class="mt-10 flex flex-col gap-4 sm:mt-14"
+    >
+      <h2
+        id="keep-reading"
+        class="font-display m-0 text-[1.75rem] font-extrabold tracking-[-0.03em] sm:text-3xl"
       >
-        <IconArrowLeft class="inline-block flex-none rtl:rotate-180" />
-        <div>
-          <span>{t.post.previousPost}</span>
-          <div class="text-accent/85 text-sm">{prevPost.data.title}</div>
-        </div>
-      </a>
-    )
-  }
-  {
-    nextPost && (
-      <a
-        href={buildPostUrl({ ...nextPost.data, slug: nextPost.id })}
-        class="flex w-full justify-end gap-1 text-end hover:opacity-75 sm:col-start-2"
-      >
-        <div>
-          <span>{t.post.nextPost}</span>
-          <div class="text-accent/85 text-sm">{nextPost.data.title}</div>
-        </div>
-        <IconArrowRight class="inline-block flex-none rtl:rotate-180" />
-      </a>
-    )
-  }
-</div>
+        Keep reading
+      </h2>
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+        {items.map(({ label, post }, i) => (
+          <Tile
+            href={buildPostUrl({ ...post.data, slug: post.id })}
+            tone={i === items.length - 1 ? "ink" : "surface"}
+            class="min-h-40 justify-between gap-8"
+          >
+            <span class="flex justify-between gap-3">
+              <Eyebrow>{label}</Eyebrow>
+              <Arrow />
+            </span>
+            <span class="font-display text-xl leading-snug font-bold tracking-[-0.015em] sm:text-[22px]">
+              {post.data.title}
+            </span>
+          </Tile>
+        ))}
+      </div>
+    </section>
+  )
+}

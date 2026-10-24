@@ -13,20 +13,18 @@
     @apply prose prose-lg;
 
     /*
-     * Voice split (the concept): chrome speaks in mono, writing in serif.
-     * Headings are chrome — keep them mono even though the body switches
-     * to a serif reading face below.
+     * Voice split: headings speak in the display face (as on the home page),
+     * long-form writing in serif, code and tables in mono.
      */
     h1,
     h2,
     h3,
-    h4,
-    th {
-      @apply text-foreground font-app mb-3 tracking-tight;
+    h4 {
+      @apply text-foreground font-display mb-3 font-bold tracking-[-0.02em];
     }
 
-    h3 {
-      @apply italic;
+    th {
+      @apply text-foreground font-mono mb-3 text-sm;
     }
 
     /*
@@ -50,7 +48,7 @@
     }
 
     a {
-      @apply text-foreground hover:text-accent wrap-break-word decoration-dashed underline-offset-4 focus-visible:no-underline;
+      @apply text-foreground hover:text-accent decoration-border hover:decoration-accent wrap-break-word underline-offset-4 transition-colors focus-visible:no-underline;
     }
 
     ul {
@@ -58,7 +56,7 @@
     }
 
     li {
-      @apply marker:text-accent;
+      @apply marker:text-signal;
     }
 
     hr {
@@ -66,7 +64,7 @@
     }
 
     img {
-      @apply border-border mx-auto border;
+      @apply border-border mx-auto rounded-2xl border;
     }
 
     img[role="button"] {
@@ -94,7 +92,7 @@
 
     code {
       /* Code stays mono chrome even when nested inside serif-scoped p/li. */
-      @apply bg-muted/75 text-foreground font-app rounded p-1 wrap-break-word before:content-none after:content-none;
+      @apply bg-muted text-foreground rounded-md px-1.5 py-0.5 font-mono text-[0.85em] font-normal wrap-break-word before:content-none after:content-none;
     }
 
     .astro-code code {
@@ -102,7 +100,7 @@
     }
 
     blockquote {
-      @apply border-s-4 border-s-accent/80 wrap-break-word opacity-80;
+      @apply bg-background rounded-2xl border-none px-6 py-1 text-[1.05em] wrap-break-word italic;
     }
 
     details:not(.callout) {
@@ -120,7 +118,7 @@
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
   .astro-code {
-    @apply outline-border flex border bg-(--shiki-light-bg) text-(--shiki-light) [&_span]:text-(--shiki-light);
+    @apply outline-border flex rounded-2xl border bg-(--shiki-light-bg) font-mono text-(--shiki-light) [&_span]:text-(--shiki-light);
   }
 
   html[data-theme="dark"] .astro-code {
